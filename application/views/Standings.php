@@ -1,48 +1,31 @@
 League Standings
-{teams}
+{league}
 <table>
     <tr>
         <td>
             {conference}
         </td>
     </tr>
+    {region}
+        <tr>
+            <td>{division}</td>
+            <td>Team</td>
+            <td>W</td>
+            <td>L</td>
+            <td>T</td>
+        <tr/>
+        {teams}
+            <tr>
+                <td></td>
+                <td>{name}</td>
+                <td>{wins}</td>
+                <td>{loss}</td>
+                <td>{ties}</td>
+            </tr>
+        {/teams}
+    {/region}
     <tr>
-        <td>
-            Division
-        </td>
-        <td>
-            Team
-        </td>
-        <td>
-            W
-        </td>
-        <td>
-            L
-        </td>
-        <td>
-            T
-        </td>
-            
+        
     </tr>
-    {team}
-    <tr>
-        <td>
-            {division}
-        </td>
-        <td>
-            {name}
-        </td>
-        <td>
-            {wins}
-        </td>
-        <td>
-            {loss}
-        </td>
-        <td>
-            {ties}
-        </td>
-       
-       
-    </tr> {/team}  
 </table>
-{/teams} 
+{/league} 

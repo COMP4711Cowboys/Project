@@ -17,7 +17,7 @@ class LeagueController extends Application  {
         $this->data['pagebody'] = 'Standings';
         $source = $this->League->all();
         
-        $this->data['teams'] = $source;
+        $this->data['league'] = $source;
 
         $this->render();
 
