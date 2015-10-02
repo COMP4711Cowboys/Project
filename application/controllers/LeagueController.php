@@ -21,7 +21,6 @@ class LeagueController extends Application  {
 
         $this->render();
 
-
     }
     
    

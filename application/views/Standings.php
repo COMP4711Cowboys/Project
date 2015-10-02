@@ -1,12 +1,48 @@
-
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 League Standings
 {teams}
-
-{name}
-
-{/teams}
+<table>
+    <tr>
+        <td>
+            {conference}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            Division
+        </td>
+        <td>
+            Team
+        </td>
+        <td>
+            W
+        </td>
+        <td>
+            L
+        </td>
+        <td>
+            T
+        </td>
+            
+    </tr>
+    {team}
+    <tr>
+        <td>
+            {division}
+        </td>
+        <td>
+            {name}
+        </td>
+        <td>
+            {wins}
+        </td>
+        <td>
+            {loss}
+        </td>
+        <td>
+            {ties}
+        </td>
+       
+       
+    </tr> {/team}  
+</table>
+{/teams} 
