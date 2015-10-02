@@ -24,14 +24,20 @@ class Application extends CI_Controller {
         $this->data = array();
         $this->data['title'] = 'COMP4711 Project';    // our default title
         $this->errors = array();
-        $this->data['pageTitle'] = 'welcome';   // our default page
+        $this->data['pageTitle'] = 'COMP4711 Project';   // our default page
+        $this->data['menuItems'] = array(
+            array( 'link' => base_url(), 'icon'=>'icon_house', 'text'=>'Home' ),
+            array( 'link' => base_url('team'), 'icon'=>'icon_group', 'text'=>'Team' ),
+            array( 'link' => base_url('team'), 'icon'=>'icon_globe_alt', 'text'=>'League' ),
+            array( 'link' => base_url('team'), 'icon'=>'icon_info', 'text'=>'About' ),
+        );
     }
 
     /**
      * Render this page
      */
     function render() {
-        
+        $this->data['sidebar'] = $this->parser->parse('_sidebar', $this->data, true);
         $this->data['content'] = $this->parser->parse($this->data['pagebody'], $this->data, true);
         $this->data['data'] = &$this->data;
         $this->parser->parse('_template', $this->data);
