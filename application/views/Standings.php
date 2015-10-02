@@ -5,8 +5,8 @@
  * and open the template in the editor.
  */
 League Standings
-{data}
+{teams}
 
 {name}
 
-{/data}
+{/teams}

@@ -16,14 +16,9 @@ class LeagueController extends Application  {
         
         $this->data['pagebody'] = 'Standings';
         $source = $this->League->all();
-        $authors = array();
-        /**foreach ($source as $team) {
-            
-            $authors[] = array('conference' => $record['who'], 'mug' => $record['mug'], 'href' => $record['where']);
-        }**/
         
-        $this->data = array_merge($this->data, $source);
-        
+        $this->data['teams'] = $source;
+
         $this->render();
 
 

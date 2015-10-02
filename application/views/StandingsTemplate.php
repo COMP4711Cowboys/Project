@@ -9,6 +9,6 @@
         <link rel="stylesheet" type="text/css" media="all" href="css/lightbox.css" />
     </head>
     <body>
- 
+            {content}
     </body>
 </html>
