@@ -3719,7 +3719,7 @@ ul.amounts li {
 
 /*panel heading color*/
 .panel-heading,.modal-header{
-    background: #F7F7F7;
+    background: #ffe0e6;
     color: #688a7e;
 
 }
@@ -4937,4 +4937,8 @@ span.customSelect.changed {
 }
 .customSelectInner {
     background:url(../img/customSelect-arrow.gif) no-repeat center right;
+}
+
+.danger {
+    background-color: ##dff8e3;
 }

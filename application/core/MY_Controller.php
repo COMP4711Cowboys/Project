@@ -27,9 +27,9 @@ class Application extends CI_Controller {
         $this->data['pageTitle'] = 'COMP4711 Project';   // our default page
         $this->data['menuItems'] = array(
             array( 'link' => base_url(), 'icon'=>'icon_house', 'text'=>'Home' ),
-            array( 'link' => base_url('team'), 'icon'=>'icon_group', 'text'=>'Team' ),
-            array( 'link' => base_url('team'), 'icon'=>'icon_globe_alt', 'text'=>'League' ),
-            array( 'link' => base_url('team'), 'icon'=>'icon_info', 'text'=>'About' ),
+            array( 'link' => base_url('Team'), 'icon'=>'icon_group', 'text'=>'Team' ),
+            array( 'link' => base_url('Standings'), 'icon'=>'icon_globe_alt', 'text'=>'League' ),
+            array( 'link' => base_url('About'), 'icon'=>'icon_info', 'text'=>'About' ),
         );
     }
 
