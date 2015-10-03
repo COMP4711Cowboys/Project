@@ -22,7 +22,7 @@ class TeamRoster extends Application {
 
     //Displays the team roster - Devan Yim
     function index() {
-        //Mock Data - Derek Gleeson       
+        //Mock Data - this should be removed when we set up models - Derek Gleeson       
         $TEAM_DATA = array(
             array('number' => '5', 'name' => 'Bailey, Dan', 'position' => 'K', 'weight' => '195', 'age' => '27', 'college' => 'Oklahoma State', 'mug' => base_url("img/mugs/profile_09.png")),
             array('number' => '11', 'name' => 'Beasley, Cole', 'position' => 'WR', 'weight' => '180', 'age' => '26', 'college' => 'Southern Methodist', 'mug' => base_url("img/mugs/profile_02.png")),
