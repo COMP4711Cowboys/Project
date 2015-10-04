@@ -31,6 +31,7 @@ class Application extends CI_Controller {
             array( 'link' => base_url('Standings'), 'icon'=>'icon_globe_alt', 'text'=>'League' ),
             array( 'link' => base_url('About'), 'icon'=>'icon_info', 'text'=>'About' ),
         );
+        $this->data['logo'] = base_url("img/logo.png");
     }
 
     /**

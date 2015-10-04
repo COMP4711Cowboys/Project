@@ -1,13 +1,8 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
- * Description of FUCKUNICORN
+ * The league model loads all the league data, and provides getter functions for it.
  *
  * @author Jathavan-Mac
  */
@@ -16,6 +11,8 @@ class League extends CI_Model {
     public function __construct(){
         parent::__construct();
     }
+
+    /** Mimic, database data of all league members.**/
     var $data = array( 
         array (
         'id' => '0', 'conference' => 'American Football Conference', 'region' => array ( 
@@ -75,16 +72,7 @@ class League extends CI_Model {
     );
         
     
-    
-    public function get($which){
-        
-        foreach($this->data as $record){
-            if ($record['id'] == $which)
-                return $record;
-        }
-        
-        return null;
-    }
+    /** Retrieve all the teams in the league**/
     
     public function all() {
         return $this->data;
