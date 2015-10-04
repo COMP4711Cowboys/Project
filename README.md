@@ -24,4 +24,4 @@ Because we did our work using pair programming, some members work will not be sh
 * My_Controller.php - Jim Parry (some modifications by Devan)
 
 # Site Template
-The template used for the site is a modified [Nice Admin Bootstrap Template](http://www.bootstrapzero.com/bootstrap-template/nice-admin) used under a [freeware](www.bootstraptaste.com) license by [BoostrapTaste](www.bootstraptaste.com)
+The template used for the site is a modified [Nice Admin Bootstrap Template](http://www.bootstrapzero.com/bootstrap-template/nice-admin) used under a [freeware](http://bootstraptaste.com/license/) license by [BoostrapTaste](http://www.bootstraptaste.com)
