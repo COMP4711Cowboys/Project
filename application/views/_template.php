@@ -63,7 +63,10 @@ if (!defined('APPPATH'))
             </div>
 
             <!--logo start-->
-            <!--<a href="index.html" class="logo">Nice <span class="lite">Admin</span></a>-->
+            <a href="welcome" class="logo">
+            <div class = "logo-div"><img class="logo-image" src="{logo}"></img></div>
+            The Dallas Cowboys
+             <span class="lite">Prediction Engine</span></a>
             <!--logo end-->
 
             <div class="nav search-row" id="top_menu">

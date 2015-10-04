@@ -1,12 +1,10 @@
 <?php
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-class LeagueController extends Application  {
+/**
+	Loads the leagues, and interacts with the league model.
+    Displays the Standings page with all the teams displayed.
+**/
+class LeagueStandings extends Application  {
     
     function __construct() {
         parent::__construct();
@@ -14,11 +12,16 @@ class LeagueController extends Application  {
     
     function index() {
         
+        //Load the appropriate view
         $this->data['pagebody'] = 'Standings';
+
+        //Load all the league data
         $source = $this->League->all();
         
+
         $this->data['league'] = $source;
 
+        //Render Data
         $this->render();
 
     }
