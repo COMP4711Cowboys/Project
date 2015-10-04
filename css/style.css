@@ -4939,6 +4939,12 @@ span.customSelect.changed {
     background:url(../img/customSelect-arrow.gif) no-repeat center right;
 }
 
-.danger {
-    background-color: #dff8e3;
+.logo-div {
+    float: left; 
+    margin-top: -3px; 
+    margin-right: 10px;
+}
+
+.logo-image {
+    vertical-align: top;
 }

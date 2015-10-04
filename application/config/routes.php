@@ -50,8 +50,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 
-$route ['Standings'] = 'LeagueController';
-$route ['About'] = 'AboutController';
+$route ['Standings'] = 'LeagueStandings';
+$route ['About'] = 'About';
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
