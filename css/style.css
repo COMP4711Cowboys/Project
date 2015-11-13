@@ -64,7 +64,7 @@ table tr th { color: #688a7e;}
     padding-top: 10px;
 }
 .lite{
-    color: #00a0df !important;
+    color: #4169e1 !important;
 }
 
 /*login page*/
@@ -530,7 +530,7 @@ ul.sidebar-menu li.active a i {
 a.logo {
     font-size: 22px;
     font-weight: 300;
-    color: #fed189;
+    color: #eeeeee;
     float: left;
     margin-top: 15px;
     text-transform: uppercase;
@@ -566,7 +566,7 @@ a.logo span {
 }
 
 ul.top-menu > li > a {
-    color: #fed189;
+    color: #eeeeee;
     font-size: 18px;    
     padding: 2px 6px;
     margin-right: 15px;
@@ -763,7 +763,7 @@ div[data-role="editor-toolbar"] {
 }
 
 .top-nav ul.top-menu > li .dropdown-menu.logout {
-    width: 200px !important;
+    width: 280px !important;
 
 }
 
@@ -779,29 +779,16 @@ div[data-role="editor-toolbar"] {
     width: 100%;
 }
 .dropdown-menu.extended.logout > li.eborder-top {
-    border-top: 2px solid #688a7e !important;    
-}
-.dropdown-menu.extended.logout > li:last-child {
-    float: left;
-    text-align: left;
-    width: 100%;
-    background: #688a7e;    
+    border-top: 2px solid #1a2732 !important;    
 }
 
-.dropdown-menu.extended.logout > li:last-child > a, .dropdown-menu.extended.logout > li:last-child > a:hover {
-    color: #fff;
-    border-bottom: none !important;
-    text-transform: uppercase;
-    background-color:#688a7e !important;
-}
-
-.dropdown-menu.extended.logout > li:last-child > a:hover > i{
-    color: #fff;
-}
 .dropdown-menu > li > a{
     color: #797979;
 }
+
 .dropdown-menu.extended.logout > li > a {
+    color: #797979;
+    background-color: #394a59 !important;
     border-bottom: 1px solid #EBEBEB !important;
     font-size: 14px;
     list-style: none;
@@ -811,23 +798,76 @@ div[data-role="editor-toolbar"] {
 }
 
 .dropdown-menu.extended.logout > li > a:hover {
-    background-color: #F7F8F9 !important;
-    color: #2E2E2E;
+    background-color: #2e3b46 !important;
+    color: #fff;
     border-bottom: 1px solid #688a7e !important;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .dropdown-menu.extended.logout > li > a:hover i {
-    color: #688a7e;
+    color: #fff;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .dropdown-menu.extended.logout > li > a i {
     font-size: 17px;
+    color: #d0d8df
 }
 
 .dropdown-menu.extended.logout > li > a > i {
     display: inline-block;
     padding-right: 10px
 }
+
+.dropdown-menu.extended.logout > li > span[class=menuItem] {
+    color: #797979;
+    background-color: #394a59 !important;
+    border-bottom: 1px solid #EBEBEB !important;
+    list-style: none;
+    padding: 15px 10px !important;
+    width: 100%;
+    display: inline-block;
+}
+
+.dropdown-menu.extended.logout > li > span[class=menuItem]:hover {
+    background-color: #2e3b46 !important;
+    color: #fff;
+    border-bottom: 1px solid #688a7e !important;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.dropdown-menu.extended.logout > li > span[class=menuItem] :hover i {
+    color: #fff;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.dropdown-menu.extended.logout > li > span[class=menuItem] i {
+    font-size: 18px;
+    color: #d0d8df
+}
+
+.dropdown-menu.extended.logout > li > span[class=menuItem] > i {
+    display: inline-block;
+    padding-right: 10px
+}
+
+
 
 .top-nav .username {
     font-size: 13px;
@@ -4947,4 +4987,20 @@ span.customSelect.changed {
 
 .logo-image {
     vertical-align: top;
+}
+
+.setting-title {
+    color: #d0d8df;
+    background-color: #1a2732;
+    font-size: 16px;
+    font-weight: 300;
+    border-bottom: 1px solid #EBEBEB !important;
+    list-style: none;
+    padding: 2px 10px !important;
+    width: 100%;
+    display: inline-block;
+}
+
+.menuItem {
+    float: right;
 }
