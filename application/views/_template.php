@@ -31,19 +31,22 @@ if (!defined('APPPATH'))
     <link href="css/font-awesome.min.css" rel="stylesheet" />    
     <!-- full calendar css-->
     <link href="assets/fullcalendar/fullcalendar/bootstrap-fullcalendar.css" rel="stylesheet" />
-	<link href="assets/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet" />
+    <link href="assets/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet" />
     <!-- easy pie chart-->
     <link href="assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css" media="screen"/>
     <!-- owl carousel -->
     <link rel="stylesheet" href="css/owl.carousel.css" type="text/css">
-	<link href="css/jquery-jvectormap-1.2.2.css" rel="stylesheet">
+    <link href="css/jquery-jvectormap-1.2.2.css" rel="stylesheet">
     <!-- Custom styles -->
-	<link rel="stylesheet" href="css/fullcalendar.css">
-	<link href="css/widgets.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/fullcalendar.css">
+    <link href="css/widgets.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link href="css/style-responsive.css" rel="stylesheet" />
-	<link href="css/xcharts.min.css" rel=" stylesheet">	
-	<link href="css/jquery-ui-1.10.4.min.css" rel="stylesheet">
+    <link href="css/xcharts.min.css" rel=" stylesheet">	
+    <link href="css/jquery-ui-1.10.4.min.css" rel="stylesheet">
+    <!-- Bootstrap switch -->
+    <link href="css/bootstrap-switch.min.css" rel="stylesheet">
+    
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
     <!--[if lt IE 9]>
       <script src="js/html5shiv.js"></script>
@@ -80,41 +83,39 @@ if (!defined('APPPATH'))
                 <!-- notificatoin dropdown start-->
                 <ul class="nav pull-right top-menu">
                     <!-- user login dropdown start-->
-                    <!-- We may need to implement users  Devan Yim
                     <li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="profile-ava">
-                                <img alt="" src="img/avatar1_small.jpg">
+                            <span>                            
+                                <i class="icon_cogs"></i>
                             </span>
-                            <span class="username">Jenifer Smith</span>
+                            <span class="username">Settings</span>
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu extended logout">
                             <div class="log-arrow-up"></div>
                             <li class="eborder-top">
-                                <a href="#"><i class="icon_profile"></i> My Profile</a>
+                                <span class="setting-title">Player:<span>
+                            <li class="eborder-top">
+                                <span class="menuItem">
+                                    <i class="icon_pens"></i>
+                                    <input type="checkbox" id="edit-switch" name="edit-switch" 
+                                           class="make-switch" data-label-text="EDIT MODE" 
+                                           data-size="mini" data-handle-width=90>
+                                </span>
                             </li>
+                            <li class="eborder-top">
+                                <span class="setting-title">Team:<span>
                             <li>
-                                <a href="#"><i class="icon_mail_alt"></i> My Inbox</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="icon_clock_alt"></i> Timeline</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="icon_chat_alt"></i> Chats</a>
-                            </li>
-                            <li>
-                                <a href="login.html"><i class="icon_key_alt"></i> Log Out</a>
-                            </li>
-                            <li>
-                                <a href="documentation.html"><i class="icon_key_alt"></i> Documentation</a>
-                            </li>
-                            <li>
-                                <a href="documentation.html"><i class="icon_key_alt"></i> Documentation</a>
+                                <span class="menuItem">
+                                    <i class="icon_piechart"></i>
+                                    <input type="checkbox" id="layout-switch" name="layout-switch" 
+                                           class="make-switch" data-label-text="LAYOUT MODE"
+                                           data-size="mini" data-on-text="GALLERY" data-off-text="TABLE" 
+                                           data-handle-width=90>
+                                </a>
                             </li>
                         </ul>
                     </li> 
-                    -->
                     <!-- user login dropdown end -->
                 </ul>
                 <!-- notificatoin dropdown end-->
@@ -141,8 +142,14 @@ if (!defined('APPPATH'))
     <script src="js/bootstrap.min.js"></script>
     <!-- nice scroll -->
     <script src="js/jquery.scrollTo.min.js"></script>
-    <script src="js/jquery.nicescroll.js" type="text/javascript"></script><!--custome script for all page-->
+    <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
+    <!-- bootstrap switch plugin -->
+    <script src="js/bootstrap-switch.min.js"></script>
+    <!-- jquery cookie plugin -->
+    <script src="js/jquery.cookie.js"></script>
+    <!--custom script for all page-->
     <script src="js/scripts.js"></script>
+    
 
   </body>
 </html>
