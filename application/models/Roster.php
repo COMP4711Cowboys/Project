@@ -81,5 +81,32 @@ class Roster extends CI_Model {
         //send data to caller
         return $this->TeamRosterData;
     }
+    
+    public function record_count() {
+        return $this->db->count_all("players");
+    }
+    
+    public function get_data($limit, $page_number){   
+        $index = ($limit * ($page_number - 1));
+        $this->db->limit($limit, $index);
+        $query = $this->db->get("players");
+
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
+                $data[] = array(
+                    'number' => $row->jersey,
+                    'name' => $row->surname . ", " . $row->firstname, 
+                    'mug' => $row->mug,
+                    'position' => $row->position,
+                    'age' => $row->age,
+                    'weight' => $row->weight, 
+                    'college' => $row->college
+                );
+            }
+            return $data;
+        }
+        
+        return false;
+    }
 
 }

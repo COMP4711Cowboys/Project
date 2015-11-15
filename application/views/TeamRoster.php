@@ -14,7 +14,7 @@
         {players}
         <tr>
             <td>{number}</td>
-            <td><img src="{mug}"></img></td>
+            <td><img src="/img/mugs/{mug}"></img></td>
             <td>{name}</td>
             <td>{position}</td>
             <td>{age}</td>
@@ -24,3 +24,5 @@
         {/players}
     </tbody>
 </table>
+
+{links}
