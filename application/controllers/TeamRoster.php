@@ -26,9 +26,10 @@ class TeamRoster extends Application {
     }
     
     //Displays the team roster in groups with pagination - Evanna Wong
-    function page($page_num = 1){
-        $mode = get_cookie('layout_mode');
+    function page($page_num = 1, $change_order = null) {
         
+        // Set layout
+        $mode = get_cookie('layout_mode');
         if ($mode == null) {
             $mode = "table";
             $layout_cookie = array(
@@ -45,10 +46,24 @@ class TeamRoster extends Application {
             $this->data['pagebody'] = 'TeamRosterGallery';
         }
         
-        $order = get_cookie('roster_order');
-        
-        if ($order == null) {
-            $order = "jersey";
+        // Set ordering
+        if ($change_order == null) {
+            // Case 1: cookie previously set, not changing
+            $order = get_cookie('roster_order');
+            // Case 2: no cookie set, not changing; set to default
+            if ($order == null) {
+                $order = $order_type;
+                $order_cookie = array(
+                    'name' => 'roster_order',
+                    'value' => "$order",
+                    'expire' => '86500',
+                    'path' => '/',
+                );
+                set_cookie($order_cookie);
+            }
+        } else {
+            // Case 3: change cookie to new setting
+            $order = $change_order;
             $order_cookie = array(
                 'name' => 'roster_order',
                 'value' => "$order",
@@ -95,16 +110,5 @@ class TeamRoster extends Application {
         $this->data["links"] = $this->pagination->create_links();
         
         $this->render();
-    }
-
-    function order($order_type) {
-        $cookie = array(
-            'name' => 'roster_order',
-            'value' => "$order_type",
-            'expire' => '86500',
-            'path' => '/',
-        );
-        set_cookie($cookie);
-        $this->index();
     }
 }
