@@ -265,7 +265,7 @@ class Player extends Application {
         }
         
         //does the record exist? let's look for it.
-        $player = $this->roster->find($id);
+        $player = $this->roster->get($id);
         if($player == null) {
             //let the user know the player doesn't exist
             $this->data['pagebody'] = 'TeamRoster';
