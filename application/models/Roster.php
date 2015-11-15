@@ -27,7 +27,7 @@ class Roster extends MY_Model {
     /** Retrieve all the teams in the league, by the given order**/
     public function getByOrder($order) {
         $result = $this->all();
-        usort($result, array($this, 'firstname'));
+        usort($result, array($this, $order));
         return $result;
     }
     
