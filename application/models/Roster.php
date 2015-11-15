@@ -30,5 +30,15 @@ class Roster extends MY_Model {
         usort($result, array($this, 'firstname'));
         return $result;
     }
+    
+    public function jersey_in_use($jersey) {
+        $sql = $this->db->select('jersey')
+                ->where('jersey',$jersey);
+                             
+    }
+    
+    public function jersey_in_use_by_other($jersey, $id) {
+        
+    }
 
 }
