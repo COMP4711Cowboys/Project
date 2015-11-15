@@ -23,6 +23,10 @@ class Roster extends MY_Model {
     public function surname($a, $b){
         return strcasecmp($a["surname"], $b["surname"]);  
     }
+    
+    public function position($a, $b){
+        return strcasecmp($a["position"], $b["position"]); 
+    }
 
     /** Retrieve all the teams in the league, by the given order**/
     public function getByOrder($order, $id) {

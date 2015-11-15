@@ -31,12 +31,31 @@ class TeamRoster extends Application {
         
         if ($mode == null) {
             $mode = "table";
-            set_cookie('layout_mode', $mode);
+            $layout_cookie = array(
+                'name' => 'layout_mode',
+                'value' => "$mode",
+                'expire' => '86500',
+                'path' => '/',
+            );
+            set_cookie($layout_cookie);
         }
         if ($mode == "table") {
             $this->data['pagebody'] = 'TeamRosterTable';
         } else {
             $this->data['pagebody'] = 'TeamRosterGallery';
+        }
+        
+        $order = get_cookie('roster_order');
+        
+        if ($order == null) {
+            $order = "jersey";
+            $order_cookie = array(
+                'name' => 'roster_order',
+                'value' => "$order",
+                'expire' => '86500',
+                'path' => '/',
+            );
+            set_cookie($order_cookie);
         }
         
         //Pagination settings
@@ -68,12 +87,9 @@ class TeamRoster extends Application {
         $config['prev_link'] = 'Previous';
         
         $this->pagination->initialize($config); 
-         
-        //assign orderby session here
-        $orderby = 'surname';
         
         //Fetch data from model
-        $this->data['players'] = $this->Roster->get_data($page_num, $orderby);
+        $this->data['players'] = $this->Roster->get_data($page_num, $order);
         
         //Create page links
         $this->data["links"] = $this->pagination->create_links();
@@ -81,23 +97,14 @@ class TeamRoster extends Application {
         $this->render();
     }
 
-    function getPlayer($id){
-        $this->data['pagebody'] = 'Player';    // this is the view we want shown
-        $query = $this->Roster->getArray($id);
-        $this->data['jersey'] = $query['jersey'];
-        $this->data['surname'] = $query['surname'];
-        $this->data['firstname'] = $query['firstname'];
-        $this->data['id'] = $query['id'];
-        $this->data['mug'] = $query['mug'];
-        $this->data['weight'] = $query['weight'];
-        $this->data['position'] = $query['position'];
-        $this->data['college'] = $query['college'];
-        $this->data['age'] = $query['age'];
-        $this->render();
-    }
-
     function order($order_type) {
-        set_cookie('roster_order', $order_type);
+        $cookie = array(
+            'name' => 'roster_order',
+            'value' => "$order_type",
+            'expire' => '86500',
+            'path' => '/',
+        );
+        set_cookie($cookie);
         $this->index();
     }
 }

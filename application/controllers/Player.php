@@ -60,7 +60,12 @@ class Player extends Application {
         //if the session variable was not set, we'll set it to off.
         if ($edit_mode == null) {
             $edit_mode = 'off';
-            set_cookie('edit_mode', $edit_mode);
+            $cookie = array(
+                'name' => 'edit_mode',
+                'value' => "$edit_mode",
+                'path' => '/',
+            );
+            set_cookie($cookie);
         }
         
         if( $edit_mode == 'on' ){
@@ -210,7 +215,12 @@ class Player extends Application {
         //if the edit mode is not set, then we assume it is off.
         if ($edit_mode == null) {
             $edit_mode = 'off';
-            set_cookie('edit_mode',$edit_mode);
+            $cookie = array(
+                'name' => 'edit_mode',
+                'value' => "$edit_mode",
+                'path' => '/',
+            );
+            set_cookie($cookie);
         }
         
         //if the edit mode is off, they shouldn't be here

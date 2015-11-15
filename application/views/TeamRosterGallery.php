@@ -1,9 +1,9 @@
 <div class="btn-group">
-    Order By:
-    <a href="/teamroster/order/jersey" class="btn btn-primary">Jersey #</a>
-    <a href="/teamroster/order/surname" class="btn btn-primary">Surname</a>
-    <a href="/teamroster/order/position" class="btn btn-primary">Position</a>
+    <a href="/Team/order/jersey" class="btn btn-primary">Jersey #</a>
+    <a href="/Team/order/surname" class="btn btn-primary">Surname</a>
+    <a href="/Team/order/position" class="btn btn-primary">Position</a>
 </div>
+<br /><br />
 <div>
     {players}
     <div class="roster-cell">
