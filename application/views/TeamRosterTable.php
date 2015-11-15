@@ -15,7 +15,7 @@
         {players}
         <tr>
             <td>{jersey}</td>
-            <td><img src="img/mugs/{mug}"></img></td>
+            <td><a href="/player/view/{id}"><img src="img/mugs/{mug}"></img></a></td>
             <td>{surname}</td>
             <td>{firstname}</td>
             <td>{position}</td>

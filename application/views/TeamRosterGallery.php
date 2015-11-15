@@ -1,7 +1,7 @@
 <div>
     {players}
     <div class="roster-cell">
-        <a href="/player/{id}"><img src="img/mugs/{mug}" title="{surname}"/></a>
+        <a href="/player/view/{id}"><img src="img/mugs/{mug}" title="{surname}"/></a>
         <p>{surname}, {firstname}</p>
     </div>
     {/players}
