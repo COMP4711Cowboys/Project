@@ -22,7 +22,16 @@ class TeamRoster extends Application {
 
     //Displays the team roster - Devan Yim
     function index() {
-        $this->data['pagebody'] = 'TeamRoster';    // this is the view we want shown
+        $mode = get_cookie('layout_mode');
+        if ($mode == null) {
+            $mode = "TABLE";
+            set_cookie('layout_mode', $mode);
+        }
+        if ($mode == "TABLE") {
+            $this->data['pagebody'] = 'TeamRosterTable';
+        } else {
+            $this->data['pagebody'] = 'TeamRosterGallery';
+        }
         $this->data['players'] = $this->Roster->getByOrder('jersey');
         $this->render();
     }

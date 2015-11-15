@@ -12,7 +12,7 @@ class Player extends Application {
         parent::__construct();
 
         $this->load->library(array('form_validation'));
-        $this->load->helper(array('form', 'file', 'cookie'));
+        $this->load->helper(array('form', 'file'));
     }
     
     /**
