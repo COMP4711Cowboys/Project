@@ -23,7 +23,7 @@ class TeamRoster extends Application {
     //Displays the team roster - Devan Yim
     function index() {
         $this->data['pagebody'] = 'TeamRoster';    // this is the view we want shown
-        $this->data['players'] = $this->Roster->all();
+        $this->data['players'] = $this->Roster->getByOrder('jersey');
         $this->render();
     }
 

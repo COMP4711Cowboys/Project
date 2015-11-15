@@ -15,8 +15,8 @@ class LeagueStandings extends Application  {
         //Load the appropriate view
         $this->data['pagebody'] = 'Standings';
 
-        //Load all the league data
-        $source = $this->League->all();
+        //Load all the organized league data
+        $source = $this->League->allTable();
         
 
         $this->data['league'] = $source;
