@@ -5004,3 +5004,29 @@ span.customSelect.changed {
 .menuItem {
     float: right;
 }
+
+.roster-cell {
+    float: left;
+    width: 250px;
+    height: 200px;
+    text-align: center;
+}
+
+.roster-cell img {
+    height: 120px;
+    border: none;
+    vertical-align: middle;
+}
+
+.player-image {
+    float: left;
+    width: 200px;
+    height: 200px;
+    text-align: center;
+}
+
+.player-image img {
+    height: 120px;
+    border: none;
+    vertical-align: middle;
+}

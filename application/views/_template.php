@@ -17,7 +17,7 @@ if (!defined('APPPATH'))
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="Template-description" content="Creative - Bootstrap 3 Responsive Admin Template">
     <meta name="Template-author" content="GeeksLabs">
-    <link rel="shortcut icon" href="img/favicon.png">
+    <link rel="shortcut icon" href="/img/favicon.png">
 
     <title>{pageTitle}</title>
 
@@ -98,7 +98,7 @@ if (!defined('APPPATH'))
                             <li class="eborder-top">
                                 <span class="menuItem">
                                     <i class="icon_pens"></i>
-                                    <input type="checkbox" id="edit-switch" name="edit-switch" 
+                                    <input type="checkbox" id="edit_switch" name="edit_switch" 
                                            class="make-switch" data-label-text="EDIT MODE" 
                                            data-size="mini" data-handle-width=90>
                                 </span>
@@ -108,7 +108,7 @@ if (!defined('APPPATH'))
                             <li>
                                 <span class="menuItem">
                                     <i class="icon_piechart"></i>
-                                    <input type="checkbox" id="layout-switch" name="layout-switch" 
+                                    <input type="checkbox" id="layout_switch" name="layout_switch" 
                                            class="make-switch" data-label-text="LAYOUT MODE"
                                            data-size="mini" data-on-text="GALLERY" data-off-text="TABLE" 
                                            data-handle-width=90>
