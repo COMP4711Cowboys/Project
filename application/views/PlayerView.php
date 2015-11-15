@@ -1,5 +1,5 @@
 <div>
-    <div class="player-image"><img src="img/mugs/{mug}" title="{surname}"/></div>
+    <div class="player-image"><img src="/img/mugs/{mug}" title="{surname}"/></div>
     <div class="player-desc">
         <table>
             <tr>

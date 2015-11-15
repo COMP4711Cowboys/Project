@@ -8,13 +8,11 @@
  */
 class Player extends Application {
 
-    
     function __construct() {
         parent::__construct();
-        
-        $this->load->model('roster');
+
         $this->load->library(array('form_validation'));
-        $this->load->helper(array('form', 'url', 'file'));
+        $this->load->helper(array('form', 'file', 'cookie'));
     }
     
     /**
@@ -54,15 +52,15 @@ class Player extends Application {
         
         //get the data from the model, set the session variable 
         $this->data = array_merge($this->data, $player);
-        $this->session->set_userData('player_data',$player);
+        
+        $this->session->set_userData('player_data', $player);
         
         //check if the user is in edit mode
-        $edit_mode = $this->session->userdata('edit_mode');
-        
+        $edit_mode = get_cookie('edit_mode', TRUE);
         //if the session variable was not set, we'll set it to off.
         if ($edit_mode == null) {
             $edit_mode = 'OFF';
-            $this->session->userdata('edit_mode', 'OFF');
+            set_cookie('edit_mode', $edit_mode);
         }
         
         if( $edit_mode == 'ON' ){
@@ -117,7 +115,7 @@ class Player extends Application {
         }
         
         $this->session->set_userdata('player_data', $player);
-        $this->data['success_message'] = $player[firstName] . ' ' .$player[surname] . 'has been saved!';
+        $this->data['success_message'] = $player[firstname] . ' ' .$player[surname] . 'has been saved!';
         $this->data['form_open'] = form_open_multipart('player/save');
         $this->data['pagebody'] = 'PlayerEdit';
         
@@ -144,7 +142,7 @@ class Player extends Application {
         $this->roster->delete($id);
         
         //let the player know everything went ok!
-        $this->data['successMessage'] = $player['firstName'].' ' .
+        $this->data['successMessage'] = $player['firstname'].' ' .
                                         $player['surname']. 'has been deleted';   
         
         //remove any player-data records from session
@@ -169,25 +167,6 @@ class Player extends Application {
         $this->data['players'] = $this->Roster->all();
         $this->render();
     }
-
-
-
-    function index($id){
-        $this->data['pagebody'] = 'Player';    // this is the view we want shown
-        $query = $this->Roster->getArray($id);
-        $this->data['jersey'] = $query['jersey'];
-        $this->data['surname'] = $query['surname'];
-        $this->data['firstname'] = $query['firstname'];
-        $this->data['id'] = $query['id'];
-        $this->data['mug'] = $query['mug'];
-        $this->data['weight'] = $query['weight'];
-        $this->data['position'] = $query['position'];
-        $this->data['college'] = $query['college'];
-        $this->data['age'] = $query['age'];
-        $this->render();
-    }
-
-
     
     /**
      * Request validation of the inputs
@@ -225,12 +204,13 @@ class Player extends Application {
      * when the 'edit mode' session variable is set and is 'ON'.
      */
     private function is_edit_mode_on(){
-        $edit_mode = $this->session->userdata('edit_mode');
+        
+        $edit_mode = get_cookie('edit_mode');
         
         //if the edit mode is not set, then we assume it is off.
         if ($edit_mode == null) {
             $edit_mode = 'OFF';
-            $this->session->userdata('edit_mode', 'OFF');
+            set_cookie('edit_mode',$edit_mode);
         }
         
         //if the edit mode is off, they shouldn't be here
@@ -241,6 +221,7 @@ class Player extends Application {
             $this->render();
             return false;
         }
+        
         return true;
     }
     
@@ -265,7 +246,8 @@ class Player extends Application {
         }
         
         //does the record exist? let's look for it.
-        $player = $this->roster->get($id);
+        $player = $this->Roster->getArray($id,'id');
+        
         if($player == null) {
             //let the user know the player doesn't exist
             $this->data['pagebody'] = 'TeamRoster';
@@ -273,7 +255,8 @@ class Player extends Application {
             $this->render();
             return null;
         }
-        return $player;
+        
+        return $player[0];
     }
     
     /**
@@ -293,7 +276,7 @@ class Player extends Application {
         //upload the file to img folder
         $config['upload_path'] = realpath(APPPATH . '../img/mugs');
         //rewrite the filename to be the playername
-        $config['file_name'] = $player['firstName'] . '_' . $player['surname'];
+        $config['file_name'] = $player['firstname'] . '_' . $player['surname'];
         //only allow these file types
         $config['allowed_types'] = 'gif|jpg|png';
         //e.g .PNG to .png (personal pref)

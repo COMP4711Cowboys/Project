@@ -34,11 +34,16 @@ class Roster extends MY_Model {
     public function jersey_in_use($jersey) {
         $sql = $this->db->select('jersey')
                 ->where('jersey',$jersey);
-                             
+        
+        return  $this->db->count_all_results() > 0;
     }
     
     public function jersey_in_use_by_other($jersey, $id) {
+        $sql = $this->db->select('jersey')
+                ->where('jersey',$jersey)
+                ->where('id !=', $id);
         
+        return $this->db->count_all_results() > 0;
     }
 
 }
