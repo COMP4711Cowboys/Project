@@ -13,9 +13,9 @@
     <tbody>
         {players}
         <tr>
-            <td>{number}</td>
-            <td><img src="{mug}"></img></td>
-            <td>{name}</td>
+            <td>{jersey}</td>
+            <td><img src="img/mugs/{mug}"></img></td>
+            <td><a href="Player/{id}">{surname}, {firstname}</a></td>
             <td>{position}</td>
             <td>{age}</td>
             <td>{weight}</td>
