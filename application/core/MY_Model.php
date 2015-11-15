@@ -195,6 +195,15 @@ class MY_Model extends CI_Model implements Active_Record {
         return $query->row();
     }
 
+        // Retrieve an existing DB record as an object
+    function getArray($key, $key2 = null) {
+        $this->db->where($this->_keyField, $key);
+        $query = $this->db->get($this->_tableName);
+        if ($query->num_rows() < 1)
+            return null;
+        return $query->row_array();
+    }
+
     // Update a record in the DB
     function update($record) {
         // convert object to associative array, if needed

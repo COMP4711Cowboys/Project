@@ -174,6 +174,10 @@ class Player extends Application {
         $this->data['players'] = $this->Roster->all();
         $this->render();
     }
+
+
+
+
     
     /**
      * Request validation of the inputs
