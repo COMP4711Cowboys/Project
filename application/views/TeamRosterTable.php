@@ -1,7 +1,7 @@
 <div class="btn-group">
-    <a href="/Team/order/jersey" class="btn btn-primary">Jersey #</a>
-    <a href="/Team/order/surname" class="btn btn-primary">Surname</a>
-    <a href="/Team/order/position" class="btn btn-primary">Position</a>
+    <a href="/Team/page/1/jersey" class="btn btn-primary">Jersey #</a>
+    <a href="/Team/page/1/surname" class="btn btn-primary">Surname</a>
+    <a href="/Team/page/1/position" class="btn btn-primary">Position</a>
 </div>
 <br /><br />
 <table class="table table-hover">
