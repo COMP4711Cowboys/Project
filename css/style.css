@@ -5030,3 +5030,7 @@ span.customSelect.changed {
     border: none;
     vertical-align: middle;
 }
+
+.pagination_links{
+    clear: both;
+}

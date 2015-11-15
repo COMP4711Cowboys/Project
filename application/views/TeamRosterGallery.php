@@ -12,3 +12,7 @@
     </div>
     {/players}
 </div>
+
+<div class="pagination_links">
+    {links}
+</div>
