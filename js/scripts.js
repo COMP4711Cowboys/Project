@@ -102,11 +102,13 @@ jQuery(document).ready(function(){
     var mode = $.cookie("edit_mode");
 
     //if the cookie is not set (bad news!) or off, we set it to off
-    if (mode == null || mode == "OFF") {
-        $('#edit_switch').bootstrapSwitch("state",false,true);
+    if (mode == null || mode == 'OFF') {
+        console.log("should be off");
+        $('input[name="edit_switch"]').bootstrapSwitch("state",false, true);
         $.cookie("edit_mode", "OFF");
     }else {
-        $('#edit-switch').bootstrapSwitch("state",true,true);
+        console.log("should be on");
+        $('input[name="edit_switch"]').bootstrapSwitch("state",true, true);
         $.cookie("edit_mode", "ON");
     }
     
@@ -115,10 +117,10 @@ jQuery(document).ready(function(){
     //if the cookie doesn't exist (oh noes!) or is set to table, set the
     //switch to off (which is the table value)
     if (mode == null || mode == "TABLE") {
-        $('#layout_switch').bootstrapSwitch("state",false,true);
+        $('input[name="layout_switch"]').bootstrapSwitch("state",false,true);
         $.cookie("layout_mode", "TABLE");
     } else {
-        $('#layout-switch').bootstrapSwitch("state",true,true);
+        $('input[name="layout_switch"]').bootstrapSwitch("state",true,true);
         $.cookie("layout_mode", "GALLERY");
     }
     
@@ -127,6 +129,7 @@ jQuery(document).ready(function(){
     $('input[name="edit_switch"]').on('switchChange.bootstrapSwitch', function(event, state) {
         //change the cookie value depending on the state
         var mode = state ? "ON" : "OFF";
+
         $.cookie("edit_mode", mode);
         
         //if we're on the roster page, we should refresh the page

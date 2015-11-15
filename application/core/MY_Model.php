@@ -202,7 +202,7 @@ class MY_Model extends CI_Model implements Active_Record {
         $query = $this->db->get($this->_tableName);
         if ($query->num_rows() < 1)
             return null;
-        return $query->row_array();
+        return $query->result_array();
     }
 
     // Update a record in the DB
