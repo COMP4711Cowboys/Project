@@ -1,9 +1,10 @@
 <table class="table table-hover">
     <thead>
         <tr>
-            <th>#</th>
+            <th>Jersey #</th>
             <th>Photo</th>
-            <th>Name</th>
+            <th>Surname</th>
+            <th>First Name</th>
             <th>Position</th>
             <th>Age</th>
             <th>Weight</th>
@@ -11,14 +12,17 @@
         </tr>
     </thead>
     <tbody>
+        {players}
         <tr>
             <td>{jersey}</td>
-            <td><img src="img/mugs/{mug}"></img></td>
-            <td><a href="Player/{id}">{surname}, {firstname}</a></td>
+            <td><a href="/player/view/{id}"><img src="img/mugs/{mug}"></img></a></td>
+            <td>{surname}</td>
+            <td>{firstname}</td>
             <td>{position}</td>
             <td>{age}</td>
             <td>{weight}</td>
             <td>{college}</td>
         </tr>
+        {/players}
     </tbody>
 </table>
