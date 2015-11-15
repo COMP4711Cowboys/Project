@@ -24,15 +24,21 @@ class TeamRoster extends Application {
     function index() {
         $mode = get_cookie('layout_mode');
         if ($mode == null) {
-            $mode = "TABLE";
+            $mode = "table";
             set_cookie('layout_mode', $mode);
         }
-        if ($mode == "TABLE") {
+        if ($mode == "table") {
             $this->data['pagebody'] = 'TeamRosterTable';
         } else {
             $this->data['pagebody'] = 'TeamRosterGallery';
         }
-        $this->data['players'] = $this->Roster->getByOrder('jersey');
+        $order = get_cookie('roster_order');
+        
+        if ($order == null) {
+            $order = "jersey";
+            set_cookie('roster_order', $order);
+        }
+        $this->data['players'] = $this->Roster->getByOrder($order);
         $this->render();
     }
 
@@ -51,4 +57,8 @@ class TeamRoster extends Application {
         $this->render();
     }
 
+    function order($order_type) {
+        set_cookie('roster_order', $order_type);
+        $this->index();
+    }
 }

@@ -59,11 +59,11 @@ class Player extends Application {
         $edit_mode = get_cookie('edit_mode', TRUE);
         //if the session variable was not set, we'll set it to off.
         if ($edit_mode == null) {
-            $edit_mode = 'OFF';
+            $edit_mode = 'off';
             set_cookie('edit_mode', $edit_mode);
         }
         
-        if( $edit_mode == 'ON' ){
+        if( $edit_mode == 'on' ){
             $this->data['form_open'] = form_open_multipart('player/save');
             $this->data['pagebody'] = 'PlayerEdit';
         } else {
@@ -197,7 +197,7 @@ class Player extends Application {
     }
     
     /** 
-     * If the 'edit_mode' session variable is not set or 'OFF', this function 
+     * If the 'edit_mode' session variable is not set or 'off', this function 
      * will direct the player to the roster page.
      * 
      * This function is used to make sure that add/save/delete can only be used 
@@ -209,13 +209,13 @@ class Player extends Application {
         
         //if the edit mode is not set, then we assume it is off.
         if ($edit_mode == null) {
-            $edit_mode = 'OFF';
+            $edit_mode = 'off';
             set_cookie('edit_mode',$edit_mode);
         }
         
         //if the edit mode is off, they shouldn't be here
         //send them to the team roster page.
-        if( $edit_mode == 'OFF' ){
+        if( $edit_mode == 'off' ){
             $this->data['pagebody'] = 'TeamRoster';
             $this->data['players'] = $this->Roster->all(); 
             $this->render();
