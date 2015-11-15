@@ -12,7 +12,7 @@ class Player extends Application {
     function __construct() {
         parent::__construct();
         
-        $this->load->model('players');
+        $this->load->model('roster');
         $this->load->library(array('form_validation'));
         $this->load->helper(array('form', 'url', 'file'));
     }
@@ -26,7 +26,10 @@ class Player extends Application {
         }
         
         //get initialized an empty player array
-        $new_player = $this->players->create();
+        $new_player = $this->roster->create();
+        // create() set's id to '', so I need to set it to null so the insert
+        // call will auto-increment the value;
+        $new_player['id'] = null;
         
         $this->data = array_merge($this->data, $new_player);
         $this->data['form_open'] = form_open_multipart('player/save');
@@ -41,18 +44,15 @@ class Player extends Application {
      * When the user wants to view a player (and possibly edit it)
      */
     public function view($id){
-        //these two functions will make the appropriate render call for us on 
+        
+        //this functions will make the appropriate render call for us on 
         //error, so we just need to return if we get an false/null response back
-        if( !$this->is_edit_mode_on() ){
-            return;
-        }
         $player = $this->is_valid_id($id);
         if($player == null){
             return;
         }
         
         //get the data from the model, set the session variable 
-        
         $this->data = array_merge($this->data, $player);
         $this->session->set_userData('player_data',$player);
         
@@ -68,10 +68,8 @@ class Player extends Application {
         if( $edit_mode == 'ON' ){
             $this->data['form_open'] = form_open_multipart('player/save');
             $this->data['pagebody'] = 'PlayerEdit';
-            
         } else {
             $this->data['pagebody'] = 'PlayerView';
-            
         }
 
         $this->render();
@@ -81,13 +79,10 @@ class Player extends Application {
      * When the user wants to save a player record to the database
      */
     public function save(){
-        
         if( !$this->is_edit_mode_on() ){
             return;
         }
         
-        $player = $this->session->userdata('player_data');
-
         //validate the data
         $valid = $this->validate();
         
@@ -146,7 +141,7 @@ class Player extends Application {
         }
         
         //everything checks out, lets delete it
-        $this->players->delete($id);
+        $this->roster->delete($id);
         
         //let the player know everything went ok!
         $this->data['successMessage'] = $player['firstName'].' ' .
@@ -251,7 +246,7 @@ class Player extends Application {
         }
         
         //does the record exist? let's look for it.
-        $player = $this->players->find($id);
+        $player = $this->roster->find($id);
         if($player == null) {
             //let the user know the player doesn't exist
             $this->data['pagebody'] = 'TeamRoster';
@@ -342,9 +337,9 @@ class Player extends Application {
         
         //new player?
         if( $player['id'] == null ){
-            $in_use = $this->players->jersey_in_use($jersey_num);
+            $in_use = $this->roster->jersey_in_use($jersey_num);
         } else {
-            $in_use = $this->players->jersey_in_use_by_other($jersey_num, $player['id']);
+            $in_use = $this->roster->jersey_in_use_by_other($jersey_num, $player['id']);
         }
         
         if($in_use) {
