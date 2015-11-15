@@ -95,39 +95,39 @@ jQuery(document).ready(function(){
     //Bootstrap switch functions, this makes my layout and edit mode 
     //selection look so snazzy
     // --Devan
-    $('input[name="edit-switch"]').bootstrapSwitch();
-    $('input[name="layout-switch"]').bootstrapSwitch();
+    $('input[name="edit_switch"]').bootstrapSwitch();
+    $('input[name="layout_switch"]').bootstrapSwitch();
 
     
-    var mode = $.cookie("edit-mode");
+    var mode = $.cookie("edit_mode");
 
     //if the cookie is not set (bad news!) or off, we set it to off
     if (mode == null || mode == "OFF") {
-        $('#edit-switch').bootstrapSwitch("state",false,true);
-        $.cookie("edit-mode", "OFF");
+        $('#edit_switch').bootstrapSwitch("state",false,true);
+        $.cookie("edit_mode", "OFF");
     }else {
         $('#edit-switch').bootstrapSwitch("state",true,true);
-        $.cookie("edit-mode", "ON");
+        $.cookie("edit_mode", "ON");
     }
     
-    mode = $.cookie("layout-mode");
+    mode = $.cookie("layout_mode");
 
     //if the cookie doesn't exist (oh noes!) or is set to table, set the
     //switch to off (which is the table value)
     if (mode == null || mode == "TABLE") {
-        $('#layout-switch').bootstrapSwitch("state",false,true);
-        $.cookie("layout-mode", "TABLE");
+        $('#layout_switch').bootstrapSwitch("state",false,true);
+        $.cookie("layout_mode", "TABLE");
     } else {
         $('#layout-switch').bootstrapSwitch("state",true,true);
-        $.cookie("layout-mode", "GALLERY");
+        $.cookie("layout_mode", "GALLERY");
     }
     
     //the following methods are called when the swich is changed
     //going to use this to send a message to update the tables
-    $('input[name="edit-switch"]').on('switchChange.bootstrapSwitch', function(event, state) {
+    $('input[name="edit_switch"]').on('switchChange.bootstrapSwitch', function(event, state) {
         //change the cookie value depending on the state
         var mode = state ? "ON" : "OFF";
-        $.cookie("edit-mode", mode);
+        $.cookie("edit_mode", mode);
         
         //if we're on the roster page, we should refresh the page
         //but give it some time to complete the animation
@@ -135,10 +135,10 @@ jQuery(document).ready(function(){
         
     });
 
-    $('input[name="layout-switch"]').on('switchChange.bootstrapSwitch', function(event, state) {
+    $('input[name="layout_switch"]').on('switchChange.bootstrapSwitch', function(event, state) {
         //change the cookie value depending on the state
         var mode = state ? "GALLERY" : "TABLE";
-        $.cookie("layout-mode", mode);
+        $.cookie("layout_mode", mode);
         
         //if we're on the roster page, we should refresh the page
         //but give it some time to look all cool and slidy
