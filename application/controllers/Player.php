@@ -6,7 +6,7 @@
  * 
  * @author Devan Yim
  */
-class TeamRoster extends Application {
+class Player extends Application {
 
     function __construct() {
         parent::__construct();
@@ -27,5 +27,9 @@ class TeamRoster extends Application {
     function delete(){
         
     }
+
+
+
+
     
 }
