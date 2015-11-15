@@ -30,13 +30,32 @@ class TeamRoster extends Application {
         $mode = get_cookie('layout_mode');
         
         if ($mode == null) {
-            $mode = "TABLE";
-            set_cookie('layout_mode', $mode);
+            $mode = "table";
+            $layout_cookie = array(
+                'name' => 'layout_mode',
+                'value' => "$mode",
+                'expire' => '86500',
+                'path' => '/',
+            );
+            set_cookie($layout_cookie);
         }
-        if ($mode == "TABLE") {
+        if ($mode == "table") {
             $this->data['pagebody'] = 'TeamRosterTable';
         } else {
             $this->data['pagebody'] = 'TeamRosterGallery';
+        }
+        
+        $order = get_cookie('roster_order');
+        
+        if ($order == null) {
+            $order = "jersey";
+            $order_cookie = array(
+                'name' => 'roster_order',
+                'value' => "$order",
+                'expire' => '86500',
+                'path' => '/',
+            );
+            set_cookie($order_cookie);
         }
         
         //Pagination settings
@@ -68,16 +87,24 @@ class TeamRoster extends Application {
         $config['prev_link'] = 'Previous';
         
         $this->pagination->initialize($config); 
-         
-        //assign orderby session here
-        $orderby = 'surname';
         
         //Fetch data from model
-        $this->data['players'] = $this->Roster->get_data($page_num, $orderby);
+        $this->data['players'] = $this->Roster->get_data($page_num, $order);
         
         //Create page links
         $this->data["links"] = $this->pagination->create_links();
         
         $this->render();
+    }
+
+    function order($order_type) {
+        $cookie = array(
+            'name' => 'roster_order',
+            'value' => "$order_type",
+            'expire' => '86500',
+            'path' => '/',
+        );
+        set_cookie($cookie);
+        $this->index();
     }
 }
