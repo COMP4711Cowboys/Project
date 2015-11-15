@@ -26,3 +26,7 @@
         {/players}
     </tbody>
 </table>
+
+<div class="pagination_links">
+    {links}
+</div>

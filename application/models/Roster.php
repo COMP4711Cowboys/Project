@@ -25,10 +25,11 @@ class Roster extends MY_Model {
     }
 
     /** Retrieve all the teams in the league, by the given order**/
-    public function getByOrder($order) {
+    public function getByOrder($order, $id) {
         $result = $this->all();
         usort($result, array($this, $order));
-        return $result;
+        $result = array_chunk($result, 12);
+        return $result[$id];
     }
     
     public function jersey_in_use($jersey) {
@@ -50,24 +51,11 @@ class Roster extends MY_Model {
         return $this->db->count_all("players");
     }
     
-    public function get_data($limit, $page_number){   
-        $index = ($limit * ($page_number - 1));
-        $this->db->limit($limit, $index);
-        $query = $this->db->get("players");
-
-        if ($query->num_rows() > 0) {
-            foreach ($query->result() as $row) {
-                $data[] = array(
-                    'number' => $row->jersey,
-                    'name' => $row->surname . ", " . $row->firstname, 
-                    'mug' => $row->mug,
-                    'position' => $row->position,
-                    'age' => $row->age,
-                    'weight' => $row->weight, 
-                    'college' => $row->college
-                );
-            }
-            return $data;
+    public function get_data($page_number, $orderby){   
+        $query = $this->getByOrder($orderby, $page_number - 1);
+        
+        if (count($query) > 0) {
+            return $query;
         }
         
         return false;

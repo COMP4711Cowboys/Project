@@ -22,16 +22,22 @@ class TeamRoster extends Application {
 
     //Displays the team roster - Devan Yim
     function index() {
-        //$this->data['pagebody'] = 'TeamRoster';    // this is the view we want shown
-        //$this->data['players'] = $this->Roster->all();
-        //$this->render();
-
         $this->page();
     }
     
     //Displays the team roster in groups with pagination - Evanna Wong
     function page($page_num = 1){
-        $this->data['pagebody'] = 'TeamRoster';
+        $mode = get_cookie('layout_mode');
+        
+        if ($mode == null) {
+            $mode = "TABLE";
+            set_cookie('layout_mode', $mode);
+        }
+        if ($mode == "TABLE") {
+            $this->data['pagebody'] = 'TeamRosterTable';
+        } else {
+            $this->data['pagebody'] = 'TeamRosterGallery';
+        }
         
         //Pagination settings
         $config = array();
@@ -62,9 +68,12 @@ class TeamRoster extends Application {
         $config['prev_link'] = 'Previous';
         
         $this->pagination->initialize($config); 
+         
+        //assign orderby session here
+        $orderby = 'surname';
         
         //Fetch data from model
-        $this->data['players'] = $this->Roster->get_data($config["per_page"], $page_num);
+        $this->data['players'] = $this->Roster->get_data($page_num, $orderby);
         
         //Create page links
         $this->data["links"] = $this->pagination->create_links();
