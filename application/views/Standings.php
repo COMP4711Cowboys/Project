@@ -17,7 +17,7 @@
     <tr>
         <td><span title="{code}">{name}</span></td>
         <td>{wins}</td>
-        <td>{loss}</td>
+        <td>{losses}</td>
         <td>{ties}</td>
     </tr>
 
