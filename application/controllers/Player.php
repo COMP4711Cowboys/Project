@@ -271,7 +271,7 @@ class Player extends Application {
         //rewrite the filename to be the playername
         $config['file_name'] = $player['firstname'] . '_' . $player['surname'];
         //only allow these file types
-        $config['allowed_types'] = 'gif|jpg|png';
+        $config['allowed_types'] = 'gif|jpg|png|jpeg';
         //e.g .PNG to .png (personal pref)
         $config['file_ext_tolower'] = true;
         //max of 150kB file size
