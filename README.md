@@ -7,7 +7,27 @@ Student project where we create an NFL Team website. This project is for educati
 * Derek Gleeson
 * Devan Yim
 
-# Work Distribution & Credit
+# Work Distribution & Credit for Assignment 2
+
+* TeamRoster Controller - Jathavan, Derek & Evanna
+* League Standings - Jathavan
+* Team & League DB conversion & script - Jathavan & Derek
+* Updated Team photos (and img tags) - Evanna
+* Player Controller (form creation & validation) - Devan
+* Team Gallery & Table Views - Derek
+* Player View - Derek
+* Player Edit - Devan
+* Controller Pagination - Evanna
+* Model Ordering - Jathavan
+* Ordering Buttons and Controller Functionality - Derek & Jathavan
+* Sessions & Cookies - Devan
+* CSS Styling - Derek & Evanna
+* Model CRUD - Jathavan (& Devan for some added functions)
+* Linux Testing - Derek
+* jQuery Edit & Layout Settings Box - Devan
+* Security - Devan
+
+# Work Distribution & Credit for Assignment 1
 Because we did our work using pair programming, some members work will not be shown via the commit log. The work distribution is as follows:
 
 * League Standings Controller - Jathavan & Evanna

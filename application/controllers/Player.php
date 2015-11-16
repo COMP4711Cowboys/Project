@@ -28,6 +28,7 @@ class Player extends Application {
         // create() set's id to '', so I need to set it to null so the insert
         // call will auto-increment the value;
         $new_player['id'] = null;
+        $new_player['mug'] = 'default_profile_image.png';
         
         $this->setup_form_data();
         $this->data['pagebody'] = 'PlayerEdit';
@@ -106,7 +107,7 @@ class Player extends Application {
         
         //save the value, a null id means it's a new player and should be inserted
         if ($player['id'] == null){
-            $record_id = $this->Roster->insert($player);
+            $record_id = $this->Roster->add($player);
             $player['id'] = $record_id;
         } else {
             $this->Roster->update($player);
@@ -274,7 +275,7 @@ class Player extends Application {
         //e.g .PNG to .png (personal pref)
         $config['file_ext_tolower'] = true;
         //max of 150kB file size
-        $config['max_size'] = '150';
+        $config['max_size'] = '1500';
         //max file width is 1024 pixels
         $config['max_width'] = '1024';
         //max file height is 768 pixels
