@@ -275,7 +275,7 @@ class Player extends Application {
         //e.g .PNG to .png (personal pref)
         $config['file_ext_tolower'] = true;
         //max of 150kB file size
-        $config['max_size'] = '1500';
+        $config['max_size'] = '2048';
         //max file width is 1024 pixels
         $config['max_width'] = '1024';
         //max file height is 768 pixels
