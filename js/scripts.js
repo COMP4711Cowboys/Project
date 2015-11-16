@@ -105,11 +105,15 @@ jQuery(document).ready(function(){
     if (mode == null || mode == "off") {
         $('input[name="edit_switch"]').bootstrapSwitch("state",false, true);
         $.cookie("edit_mode", "off", { path : '/' });
+        $('#player_add_button').hide();
     }else {
         $('input[name="edit_switch"]').bootstrapSwitch("state",true, true);
         $.cookie("edit_mode", "on", { path : '/' });
+        $('#player_add_button').show();
     }
     
+
+
     mode = $.cookie("layout_mode");
 
     //if the cookie doesn't exist (oh noes!) or is set to table, set the
@@ -122,6 +126,8 @@ jQuery(document).ready(function(){
         $.cookie("layout_mode", "gallery", { path : '/' });
     }
     
+
+
     //the following methods are called when the swich is changed
     //going to use this to send a message to update the tables
     $('input[name="edit_switch"]').on('switchChange.bootstrapSwitch', function(event, state) {
@@ -145,6 +151,8 @@ jQuery(document).ready(function(){
         //but give it some time to look all cool and slidy
         setTimeout(function(){ location.reload(true);}, 1000);
     });
+
+
 });
 
 

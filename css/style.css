@@ -5023,6 +5023,12 @@ span.customSelect.changed {
     border: none;
 }
 
+.league-table-img {
+    height: 50px;
+    border: none;
+}
+
+
 .player-image {
     float: left;
     padding: 20px;

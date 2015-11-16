@@ -24,7 +24,9 @@ class Player extends Application {
         }
         
         //get initialized an empty player array
-        $new_player = $this->Roster->create();
+        $new_player = (array)$this->Roster->create();
+        
+        //$new_player = json_decode(json_encode($new_player), true);
         // create() set's id to '', so I need to set it to null so the insert
         // call will auto-increment the value;
         $new_player['id'] = null;
