@@ -19,6 +19,7 @@ class Player extends Application {
      * When the user wants to create a new player
      */
     public function add(){
+        $this->session->unset_userdata('player_data');
         if( !$this->is_edit_mode_on() ){
             return;
         }
@@ -31,11 +32,11 @@ class Player extends Application {
         // call will auto-increment the value;
         $new_player['id'] = null;
         $new_player['mug'] = 'default_profile_image.png';
+        $this->session->set_userdata('player_data',$new_player);
         
         $this->setup_form_data();
         $this->data['pagebody'] = 'PlayerEdit';
         
-        $this->session->set_userdata('player_data',$new_player);
         $this->render();
     }
     
@@ -149,10 +150,7 @@ class Player extends Application {
         //destroy the player session
         $this->session->unset_userdata("player_data");
         
-        //display the roster page
-        $this->data['pagebody'] = 'TeamRoster';
-        $this->data['players'] = $this->Roster->all();
-        $this->render();
+        redirect('/TeamRoster');
     }
     
     /**
@@ -175,7 +173,7 @@ class Player extends Application {
         $this->form_validation->set_rules('jersey', 'Jersey', 'trim|required|integer|is_natural|callback_unique_jersey');
         $this->form_validation->set_rules('age', 'Age', 'trim|required|integer|is_natural');
         $this->form_validation->set_rules('weight', 'Weight', 'trim|required|integer|is_natural');
-        $this->form_validation->set_rules('college', 'College', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('college', 'College', 'trim|required|max_length[50]|regex_match[/[a-zA-Z\'. -]{1,50}/]');
         $this->form_validation->set_rules('position', 'Position', 'trim|required|in_list[QB,RB,FB,WR,TE,OL,C,G,LG,RG,T,LT,RT,K,KR,DL,DE,DT,NT,LB,ILB,OLB,MLB,DB,CB,FS,SS,S,P,PR]');
         
         //form validation rules located in application/config/form_validation.php
