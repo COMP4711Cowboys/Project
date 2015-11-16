@@ -52,7 +52,7 @@ class TeamRoster extends Application {
             $order = get_cookie('roster_order');
             // Case 2: no cookie set, not changing; set to default
             if ($order == null) {
-                $order = $order_type;
+                $order = "jersey";
                 $order_cookie = array(
                     'name' => 'roster_order',
                     'value' => "$order",
