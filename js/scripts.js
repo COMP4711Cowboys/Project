@@ -91,6 +91,18 @@ function initializeJS() {
 jQuery(document).ready(function(){
     initializeJS();
     
+    //Check how the roster is being ordered by
+    //denote to user how it is being ordered.
+    var order = $.cookie("roster_order");
+
+    if (order == null || order == "jersey"){
+        $("#jersey-btn").addClass("active");
+    } else if (order == "surname") {
+        $("#surname-btn").addClass("active");
+    } else {
+        $("#lastname-btn").addClass("active");
+    }
+
     
     //Bootstrap switch functions, this makes my layout and edit mode 
     //selection look so snazzy
@@ -151,6 +163,8 @@ jQuery(document).ready(function(){
         //but give it some time to look all cool and slidy
         setTimeout(function(){ location.reload(true);}, 1000);
     });
+
+
 
 
 });

@@ -1,7 +1,7 @@
 <div class="btn-group">
-    <a href="/Team/page/1/jersey" class="btn btn-primary">Jersey #</a>
-    <a href="/Team/page/1/surname" class="btn btn-primary">Surname</a>
-    <a href="/Team/page/1/position" class="btn btn-primary">Position</a>
+    <a href="/Team/page/1/jersey" id="jersey-btn" class="btn btn-primary">Jersey #</a>
+    <a href="/Team/page/1/surname" id="surname-btn" class="btn btn-primary">Surname</a>
+    <a href="/Team/page/1/position" id="lastname-btn" class="btn btn-primary">Position</a>
 </div>
 
 <a href="/Player/add" id="player_add_button" class="btn btn-info" role="button">Add Player</a>
