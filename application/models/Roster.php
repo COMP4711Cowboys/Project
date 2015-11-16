@@ -38,6 +38,7 @@ class Roster extends MY_Model {
     
     public function jersey_in_use($jersey) {
         $sql = $this->db->select('jersey')
+                ->from('players')
                 ->where('jersey',$jersey);
         
         return  $this->db->count_all_results() > 0;
@@ -45,6 +46,7 @@ class Roster extends MY_Model {
     
     public function jersey_in_use_by_other($jersey, $id) {
         $sql = $this->db->select('jersey')
+                ->from('players')
                 ->where('jersey',$jersey)
                 ->where('id !=', $id);
         
