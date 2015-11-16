@@ -3,6 +3,8 @@
     <a href="/Team/page/1/surname" class="btn btn-primary">Surname</a>
     <a href="/Team/page/1/position" class="btn btn-primary">Position</a>
 </div>
+<a href="/Player/add" id="player_add_button" class="btn btn-info" role="button">Add Player</a>
+
 <br /><br />
 <table class="table table-hover">
     <thead>
