@@ -96,17 +96,14 @@ class Player extends Application {
             $this->render();
             return;
         }
+        
         //upload the image
-        //$file_name = $this->upload($player['id']);
-        /*
-        if($filename == null){            
-            $this->setup_form_data();
-            $this->render();
-            return;
+        $filename = $this->upload_mug();
+        
+        if($filename != null){            
+            $player['mug'] = $filename;
         }
         
-        $player['mug'] = $file_name;
-        */
         //save the value, a null id means it's a new player and should be inserted
         if ($player['id'] == null){
             $record_id = $this->Roster->insert($player);
@@ -117,6 +114,7 @@ class Player extends Application {
         
         $this->session->unset_userdata('player_data');
         redirect('/TeamRoster');
+        
     }
     
     /** 
@@ -267,9 +265,9 @@ class Player extends Application {
      * @return bool true if the upload is successful, false otherwise and data
      * value of 'upload_errors' will be set
      */
-    private function upload($player){
-        
+    private function upload_mug(){
         //upload configuration stuff
+        $player = $this->session->userdata('player_data');
         
         //upload the file to img folder
         $config['upload_path'] = realpath(APPPATH . '../img/mugs');
@@ -289,26 +287,20 @@ class Player extends Application {
         $this->load->library('upload', $config);
         
         //try to upload!
-        if ( ! $this->upload->do_upload('mugshot') )
+        if ( ! $this->upload->do_upload('userfile') )
         {
-            //upload was not successful
-            $this->data['upload_errors'] = array($this->upload->display_errors());
             return null;
         }
         else
         {
             //upload was a success
-            $file = file_get_contents(realpath(APPPATH . '../img/mugs' . $this->upload->data('file_name')));
+            $file = $this->upload->data('photo');
             //lets check the file for badness
             if ($this->security->xss_clean($file, TRUE) === FALSE)
             {
                 // file failed the XSS test
                 // delete the file
                 unlink(realpath(APPPATH . '../img/mugs' . $this->upload->data('file_name')));
-                
-                //generate error
-                $this->data['upload_errors'] = array('invalid file');
-                
                 return null;
             }
             

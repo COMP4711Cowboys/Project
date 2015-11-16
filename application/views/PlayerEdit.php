@@ -2,12 +2,14 @@
     {form_open}
         <div class='container'>
             <div class='row'>
-                <div class='col-md-3 container'>
-                    <img src="/img/mugs/{mug}"></img>
+                <div class='col-md-4'>
                     <h5>Upload New Image:</h5>
-                    <input type="file" name="userfile" size="20" />
+                        <input type="file" name="userfile" size="20" />
+                    <div class="player-image">
+                        <img src="/img/mugs/{mug}"></img>
+                    </div>
                 </div>
-                <div class='col-md-5 form_edit_player'>
+                <div class='col-md-4 form_edit_player'>
                     <div class="form-group">
                         {f_firstname_err}
                         <h5>First Name:</h5>
