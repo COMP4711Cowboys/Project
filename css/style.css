@@ -5013,22 +5013,34 @@ span.customSelect.changed {
 }
 
 .roster-cell img {
-    height: 120px;
+    height: 160px;
     border: none;
     vertical-align: middle;
+}
+
+.table-roster-img {
+    height: 200px;
+    border: none;
 }
 
 .player-image {
     float: left;
-    width: 200px;
-    height: 200px;
+    padding: 20px;
     text-align: center;
 }
 
 .player-image img {
-    height: 120px;
+    height: 300px;
     border: none;
     vertical-align: middle;
+}
+
+.player-desc {
+    padding: 20px;
+}
+
+.player-desc th {
+    padding-right: 10px;
 }
 
 .pagination_links{
