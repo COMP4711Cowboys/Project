@@ -24,7 +24,7 @@ class Player extends Application {
         }
         
         //get initialized an empty player array
-        $new_player = $this->roster->create();
+        $new_player = $this->Roster->create();
         // create() set's id to '', so I need to set it to null so the insert
         // call will auto-increment the value;
         $new_player['id'] = null;
@@ -130,14 +130,10 @@ class Player extends Application {
         $player = $this->is_valid_id($id);
         
         //everything checks out, lets delete it
-        $this->roster->delete($id);
-        
-        //let the player know everything went ok!
-        $this->data['successMessage'] = $player['firstname'].' ' .
-                                        $player['surname']. 'has been deleted';   
+        $this->Roster->delete($id, 'id');
         
         //remove any player_data records from session
-        $this->session->unset_data('player_data');
+        $this->session->unset_userdata('player_data');
         
         //off to the roster page!
         redirect('/TeamRoster');
@@ -402,6 +398,12 @@ class Player extends Application {
         
         $this->data['mug'] = $player['mug'];
         $this->data['f_mugFile']  = form_upload('New Image', 'upload_file', $player['firstname'],$upload_atb);
+        
+        if($player['id'] != null) {
+            $this->data['delete_button'] = $this->parser->parse('_deleteButton', array('player_id'=>$player['id']), true);
+        } else {
+            $this->data['delete_button'] = ' ';
+        }
         
         $this->data = array_merge($this->data, $player);
         

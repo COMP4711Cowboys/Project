@@ -53,6 +53,7 @@
                     <a href="/player/cancel">
                         <input type="button" value="Cancel" class="btn btn-primary"/>
                     </a>
+                    {delete_button}
                 </div>
                 </form>
                 
