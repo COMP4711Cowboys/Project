@@ -24,7 +24,9 @@ class Player extends Application {
         }
         
         //get initialized an empty player array
-        $new_player = $this->Roster->create();
+        $new_player = (array)$this->Roster->create();
+        
+        //$new_player = json_decode(json_encode($new_player), true);
         // create() set's id to '', so I need to set it to null so the insert
         // call will auto-increment the value;
         $new_player['id'] = null;
@@ -106,7 +108,7 @@ class Player extends Application {
         
         //save the value, a null id means it's a new player and should be inserted
         if ($player['id'] == null){
-            $record_id = $this->Roster->insert($player);
+            $record_id = $this->Roster->add($player);
             $player['id'] = $record_id;
         } else {
             $this->Roster->update($player);
