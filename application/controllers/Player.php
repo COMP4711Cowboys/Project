@@ -101,6 +101,7 @@ class Player extends Application {
             return;
         }
         
+
         //upload the image
         $filename = $this->upload_mug();
         
@@ -282,7 +283,7 @@ class Player extends Application {
         $config['max_height'] = '768';
         
         $this->load->library('upload', $config);
-        
+        chmod(realpath(APPPATH . '../img/mugs'), 777); 
         //try to upload!
         if ( ! $this->upload->do_upload('userfile') )
         {
