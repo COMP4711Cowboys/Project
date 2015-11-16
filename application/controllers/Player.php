@@ -29,12 +29,10 @@ class Player extends Application {
         // call will auto-increment the value;
         $new_player['id'] = null;
         
-        $this->data = array_merge($this->data, $new_player);
-        $this->data['form_open'] = form_open_multipart('player/save');
+        $this->setup_form_data();
         $this->data['pagebody'] = 'PlayerEdit';
         
-        
-        $this->session->set_userData('player_data',$new_player);
+        $this->session->set_userdata('player_data',$new_player);
         $this->render();
     }
     
@@ -51,9 +49,11 @@ class Player extends Application {
         }
         
         //get the data from the model, set the session variable 
-        $this->data = array_merge($this->data, $player);
         
-        $this->session->set_userData('player_data', $player);
+        $this->session->set_userdata('player_data',$player);
+        $sess = $this->session->userdata('player_data');
+        
+        $this->data = array_merge($this->data, $sess);
         
         //check if the user is in edit mode
         $edit_mode = get_cookie('edit_mode', TRUE);
@@ -64,7 +64,7 @@ class Player extends Application {
         }
         
         if( $edit_mode == 'ON' ){
-            $this->data['form_open'] = form_open_multipart('player/save');
+            $this->setup_form_data();
             $this->data['pagebody'] = 'PlayerEdit';
         } else {
             $this->data['pagebody'] = 'PlayerView';
@@ -77,49 +77,44 @@ class Player extends Application {
      * When the user wants to save a player record to the database
      */
     public function save(){
+        
         if( !$this->is_edit_mode_on() ){
-            return;
+            
         }
+        
+        $player = $this->get_values_from_form();
         
         //validate the data
         $valid = $this->validate();
+        $this->session->set_userdata('player_data',$player);
+        
         
         if(!$valid) {
-            form_open_multipart('player/save');
-            $this->data['player'] = $this->session->userdata('player');
-            $this->data['form_open'] = form_open_multipart('player/save');
             $this->data['pagebody'] = 'PlayerEdit';
             $this->render();
             return;
         }
-        
         //upload the image
-        $file_name = $this->upload($player['id']);
-        
+        //$file_name = $this->upload($player['id']);
+        /*
         if($filename == null){            
-            $this->data['player'] = $this->session->userdata('player');
-            $this->data['form_open'] = form_open_multipart('player/save');
-            $this->data['pagebody'] = 'PlayerEdit';
+            $this->setup_form_data();
             $this->render();
             return;
         }
         
         $player['mug'] = $file_name;
-        
+        */
         //save the value, a null id means it's a new player and should be inserted
         if ($player['id'] == null){
-            $record_id = $this->model->insert($player);
+            $record_id = $this->Roster->insert($player);
             $player['id'] = $record_id;
         } else {
-            $this->model->update($player);
+            $this->Roster->update($player);
         }
         
-        $this->session->set_userdata('player_data', $player);
-        $this->data['success_message'] = $player[firstname] . ' ' .$player[surname] . 'has been saved!';
-        $this->data['form_open'] = form_open_multipart('player/save');
-        $this->data['pagebody'] = 'PlayerEdit';
-        
-        $this->render();
+        $this->session->unset_userdata('player_data');
+        redirect('/TeamRoster');
     }
     
     /** 
@@ -130,13 +125,9 @@ class Player extends Application {
         
         //these two functions will make the appropriate render call for us on 
         //error, so we just need to return if we get an false/null response back
-        if( !$this->is_edit_mode_on() ){
-            return;
-        }
+        !$this->is_edit_mode_on();
+        
         $player = $this->is_valid_id($id);
-        if($player == null){
-            return;
-        }
         
         //everything checks out, lets delete it
         $this->roster->delete($id);
@@ -145,14 +136,11 @@ class Player extends Application {
         $this->data['successMessage'] = $player['firstname'].' ' .
                                         $player['surname']. 'has been deleted';   
         
-        //remove any player-data records from session
-        $this->session->unset_data('player-data');
+        //remove any player_data records from session
+        $this->session->unset_data('player_data');
         
         //off to the roster page!
-        $this->data['pagebody'] = 'TeamRoster';
-        $this->data['players'] = $this->Roster->all();
-         
-        $this->render();
+        redirect('/TeamRoster');
     }
     
     /**
@@ -173,25 +161,37 @@ class Player extends Application {
      */
     private function validate(){
         //get the all POST form field, (and clean them with xss_clean)
-        $session_player = $this->session->user_data('player_data');
+        $session_player = $this->session->userdata('player_data');
         
         //if somehow we saved without our buffered session guy, just assume false
+        /*
         if($session_player == null) {
             return FALSE;
         }
+         */
+        
+        $this->form_validation->set_error_delimiters('<div class="alert alert-danger">', '</div>');
+        $this->form_validation->set_rules('firstname', 'First Name', 'trim|required|max_length[50]|regex_match[/[a-zA-Z\'.-]{1,50}/]');
+        $this->form_validation->set_rules('surname', 'Last Name', 'trim|required|max_length[50]|regex_match[/[a-zA-Z\'.-]{1,50}/]');
+        $this->form_validation->set_rules('jersey', 'Jersey', 'trim|required|integer|is_natural|callback_unique_jersey');
+        $this->form_validation->set_rules('age', 'Age', 'trim|required|integer|is_natural');
+        $this->form_validation->set_rules('weight', 'Weight', 'trim|required|integer|is_natural');
+        $this->form_validation->set_rules('college', 'College', 'trim|required|alpha_numeric_spaces');
+        $this->form_validation->set_rules('position', 'Position', 'trim|required|in_list[QB,RB,FB,WR,TE,OL,C,G,LG,RG,T,LT,RT,K,KR,DL,DE,DT,NT,LB,ILB,OLB,MLB,DB,CB,FS,SS,S,P,PR]');
         
         //form validation rules located in application/config/form_validation.php
         if ($this->form_validation->run() == FALSE)
         {
-            $this->data['form_errors'] = validation_errors();
-            $player = $this->input->post(null, TRUE);
+            $player = $this->get_values_from_form();
             $this->session->set_userdata('player_data',$player);
+            $this->setup_form_data();
             return FALSE;
         }
         else
         {
-            $player = $this->input->post(null, TRUE);
+            $player = $this->get_values_from_form();
             $this->session->set_userdata('player_data',$player);
+            $this->setup_form_data();
             return TRUE;
         }
     }
@@ -216,10 +216,7 @@ class Player extends Application {
         //if the edit mode is off, they shouldn't be here
         //send them to the team roster page.
         if( $edit_mode == 'OFF' ){
-            $this->data['pagebody'] = 'TeamRoster';
-            $this->data['players'] = $this->Roster->all(); 
-            $this->render();
-            return false;
+            redirect('/TeamRoster');
         }
         
         return true;
@@ -239,10 +236,7 @@ class Player extends Application {
         if(!is_numeric($id)){
             //don't bother letting the user know anything, just assume he's
             //made a mistake, send him to the roster page.
-            $this->data['pagebody'] = 'TeamRoster';
-            $this->data['players'] = $this->Roster->all(); 
-            $this->render();
-            return null;
+            redirect('/TeamRoster');
         }
         
         //does the record exist? let's look for it.
@@ -250,10 +244,7 @@ class Player extends Application {
         
         if($player == null) {
             //let the user know the player doesn't exist
-            $this->data['pagebody'] = 'TeamRoster';
-            $this->data['players'] = $this->Roster->all(); 
-            $this->render();
-            return null;
+            redirect('/TeamRoster');
         }
         
         return $player[0];
@@ -328,9 +319,9 @@ class Player extends Application {
      * @param type $jersey_num
      * @return boolean
      */
-    private function unique_jersey($jersey_num){
+    public function unique_jersey($jersey_num){
         
-        $player = $this->session->userdata('player-data');
+        $player = $this->session->userdata('player_data');
         
         //not checking if the session variable is null because we'll check that 
         //before we run our validation
@@ -339,9 +330,9 @@ class Player extends Application {
         
         //new player?
         if( $player['id'] == null ){
-            $in_use = $this->roster->jersey_in_use($jersey_num);
+            $in_use = $this->Roster->jersey_in_use($jersey_num);
         } else {
-            $in_use = $this->roster->jersey_in_use_by_other($jersey_num, $player['id']);
+            $in_use = $this->Roster->jersey_in_use_by_other($jersey_num, $player['id']);
         }
         
         if($in_use) {
@@ -351,4 +342,84 @@ class Player extends Application {
             return TRUE;
         }
     }
+    
+    private function setup_form_data(){
+        $player = $this->session->userdata('player_data');
+        
+        $this->data['form_open'] = form_open_multipart('player/save');
+        
+        $position_options = array(
+            'QB'    => 'Quarterback',
+            'RB'    => 'Running Back',
+            'FB'    => 'Fullback',
+            'WR'    => 'Wide Receiver',
+            'TE'    => 'Tight End',
+            'OL'    => 'Offensive Lineman',
+            'C'     => 'Center',
+            'G'     => 'Guard',
+            'LG'    => 'Left Guard',
+            'RG'    => 'Right Guard',
+            'T'     => 'Tackle',
+            'LT'    => 'Left Tackle',
+            'RT'    => 'Right Tackle',
+            'K'     => 'Kicker',
+            'KR'    => 'Kick Returner',
+            'DL'    => 'Defensive Lineman',
+            'DE'    => 'Defensive End',
+            'DT'    => 'Defensive Takle',
+            'NT'    => 'Nose Tackle',
+            'LB'    => 'Linebacker',
+            'ILB'   => 'Inside Linebacker',
+            'OLB'   => 'Outside Linebacker',
+            'MLB'   => 'Middle Linebacker',
+            'DB'    => 'Defensive Back',
+            'CB'    => 'Cornerback',
+            'FS'    => 'Free Safety',
+            'SS'    => 'Strong Safety',
+            'S'     => 'Safety',
+            'P'     => 'Punter',
+            'PR'    => 'Punt Returner'
+            );
+        
+        $attributes = array('class' => 'form-control');
+        $upload_atb = array('class' => 'btn btn-file');
+        
+        $this->data['success_message'] = "";
+        
+        $this->data['f_firstname_err'] = form_error('firstname');
+        $this->data['f_firstname'] = form_input('firstname', $player['firstname'],$attributes);
+        $this->data['f_surname_err'] = form_error('surname');
+        $this->data['f_surname']  = form_input('surname', $player['surname'],$attributes);
+        $this->data['f_jersey_err'] = form_error('jersey');
+        $this->data['f_jersey']  = form_input('jersey', $player['jersey'],$attributes);
+        $this->data['f_position_err'] = form_error('position');
+        $this->data['f_position']  = form_dropdown('position', $position_options, $player['position'],$attributes);
+        $this->data['f_age_err'] = form_error('age');
+        $this->data['f_age']  = form_input('age', $player['age'], $attributes);
+        $this->data['f_weight_err'] = form_error('weight');
+        $this->data['f_weight']  = form_input('weight', $player['weight'],$attributes);
+        $this->data['f_college_err'] = form_error('college');
+        $this->data['f_college']  = form_input('college', $player['college'],$attributes);
+        
+        $this->data['mug'] = $player['mug'];
+        $this->data['f_mugFile']  = form_upload('New Image', 'upload_file', $player['firstname'],$upload_atb);
+        
+        $this->data = array_merge($this->data, $player);
+        
+    }
+    
+    private function get_values_from_form(){
+        $player = $this->session->userdata('player_data');
+        
+        $player['firstname'] = $this->input->post('firstname', true);
+        $player['surname'] = $this->input->post('surname', true);
+        $player['jersey'] = $this->input->post('jersey', true);
+        $player['age'] = $this->input->post('age', true);
+        $player['weight'] = $this->input->post('weight', true);
+        $player['college'] = $this->input->post('college', true);
+        $player['position'] = $this->input->post('position', true);
+        
+        return $player;
+    }
+    
 }
