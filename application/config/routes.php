@@ -56,3 +56,8 @@ $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['Team'] = 'TeamRoster';
+$route['Team/page'] = 'TeamRoster/page';
+$route['Team/page/(:num)'] = 'TeamRoster/page/$1';
+$route['Player'] = 'Player';
+$route['Team/page/1/(:any)'] = 'TeamRoster/page/1/$1';
+

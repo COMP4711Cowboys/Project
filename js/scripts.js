@@ -82,12 +82,77 @@ function initializeJS() {
             jQuery(this).find(".value").html("");
             jQuery(this).find(".value").animate({
                 height: i
-            }, 2000)
-        })
+            }, 2000);
+        });
     }
 
 }
 
 jQuery(document).ready(function(){
     initializeJS();
+    
+    
+    //Bootstrap switch functions, this makes my layout and edit mode 
+    //selection look so snazzy
+    // --Devan
+    $('input[name="edit_switch"]').bootstrapSwitch();
+    $('input[name="layout_switch"]').bootstrapSwitch();
+
+    
+    var mode = $.cookie("edit_mode");
+
+    //if the cookie is not set (bad news!) or off, we set it to off
+    if (mode == null || mode == "off") {
+        $('input[name="edit_switch"]').bootstrapSwitch("state",false, true);
+        $.cookie("edit_mode", "off", { path : '/' });
+        $('#player_add_button').hide();
+    }else {
+        $('input[name="edit_switch"]').bootstrapSwitch("state",true, true);
+        $.cookie("edit_mode", "on", { path : '/' });
+        $('#player_add_button').show();
+    }
+    
+
+
+    mode = $.cookie("layout_mode");
+
+    //if the cookie doesn't exist (oh noes!) or is set to table, set the
+    //switch to off (which is the table value)
+    if (mode == null || mode == "table") {
+        $('input[name="layout_switch"]').bootstrapSwitch("state",false,true);
+        $.cookie("layout_mode", "table", { path : '/' });
+    } else {
+        $('input[name="layout_switch"]').bootstrapSwitch("state",true,true);
+        $.cookie("layout_mode", "gallery", { path : '/' });
+    }
+    
+
+
+    //the following methods are called when the swich is changed
+    //going to use this to send a message to update the tables
+    $('input[name="edit_switch"]').on('switchChange.bootstrapSwitch', function(event, state) {
+        //change the cookie value depending on the state
+        var mode = state ? "on" : "off";
+
+        $.cookie("edit_mode", mode, { path : '/' });
+        
+        //if we're on the roster page, we should refresh the page
+        //but give it some time to complete the animation
+        setTimeout(function(){ location.reload(true);}, 1000);
+        
+    });
+
+    $('input[name="layout_switch"]').on('switchChange.bootstrapSwitch', function(event, state) {
+        //change the cookie value depending on the state
+        var mode = state ? "gallery" : "table";
+        $.cookie("layout_mode", mode, { path : '/' });
+        
+        //if we're on the roster page, we should refresh the page
+        //but give it some time to look all cool and slidy
+        setTimeout(function(){ location.reload(true);}, 1000);
+    });
+
+
 });
+
+
