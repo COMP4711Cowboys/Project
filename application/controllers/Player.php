@@ -12,7 +12,7 @@ class Player extends Application {
         parent::__construct();
 
         $this->load->library(array('form_validation'));
-        $this->load->helper(array('form', 'file', 'cookie'));
+        $this->load->helper(array('form', 'file'));
     }
     
     /**
@@ -44,9 +44,6 @@ class Player extends Application {
         //this functions will make the appropriate render call for us on 
         //error, so we just need to return if we get an false/null response back
         $player = $this->is_valid_id($id);
-        if($player == null){
-            return;
-        }
         
         //get the data from the model, set the session variable 
         
@@ -59,11 +56,16 @@ class Player extends Application {
         $edit_mode = get_cookie('edit_mode', TRUE);
         //if the session variable was not set, we'll set it to off.
         if ($edit_mode == null) {
-            $edit_mode = 'OFF';
-            set_cookie('edit_mode', $edit_mode);
+            $edit_mode = 'off';
+            $cookie = array(
+                'name' => 'edit_mode',
+                'value' => "$edit_mode",
+                'path' => '/',
+            );
+            set_cookie($cookie);
         }
         
-        if( $edit_mode == 'ON' ){
+        if( $edit_mode == 'on' ){
             $this->setup_form_data();
             $this->data['pagebody'] = 'PlayerEdit';
         } else {
@@ -197,7 +199,7 @@ class Player extends Application {
     }
     
     /** 
-     * If the 'edit_mode' session variable is not set or 'OFF', this function 
+     * If the 'edit_mode' session variable is not set or 'off', this function 
      * will direct the player to the roster page.
      * 
      * This function is used to make sure that add/save/delete can only be used 
@@ -209,13 +211,18 @@ class Player extends Application {
         
         //if the edit mode is not set, then we assume it is off.
         if ($edit_mode == null) {
-            $edit_mode = 'OFF';
-            set_cookie('edit_mode',$edit_mode);
+            $edit_mode = 'off';
+            $cookie = array(
+                'name' => 'edit_mode',
+                'value' => "$edit_mode",
+                'path' => '/',
+            );
+            set_cookie($cookie);
         }
         
         //if the edit mode is off, they shouldn't be here
         //send them to the team roster page.
-        if( $edit_mode == 'OFF' ){
+        if( $edit_mode == 'off' ){
             redirect('/TeamRoster');
         }
         

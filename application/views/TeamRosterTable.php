@@ -1,3 +1,9 @@
+<div class="btn-group">
+    <a href="/Team/page/1/jersey" class="btn btn-primary">Jersey #</a>
+    <a href="/Team/page/1/surname" class="btn btn-primary">Surname</a>
+    <a href="/Team/page/1/position" class="btn btn-primary">Position</a>
+</div>
+<br /><br />
 <table class="table table-hover">
     <thead>
         <tr>
@@ -15,7 +21,7 @@
         {players}
         <tr>
             <td>{jersey}</td>
-            <td><a href="/player/view/{id}"><img src="/img/mugs/{mug}"></img></a></td>
+            <td><a href="/player/view/{id}"><img class="table-roster-img" src="/img/mugs/{mug}"></img></a></td>
             <td>{surname}</td>
             <td>{firstname}</td>
             <td>{position}</td>
@@ -26,3 +32,7 @@
         {/players}
     </tbody>
 </table>
+
+<div class="pagination_links">
+    {links}
+</div>

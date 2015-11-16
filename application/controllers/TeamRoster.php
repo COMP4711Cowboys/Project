@@ -15,31 +15,100 @@
  * @author Devan Yim & Derek Gleeson
  */
 class TeamRoster extends Application {
-
+    public $pagenum = 0;
     function __construct() {
         parent::__construct();
     }
 
     //Displays the team roster - Devan Yim
     function index() {
-        $this->data['pagebody'] = 'TeamRoster';    // this is the view we want shown
-        $this->data['players'] = $this->Roster->getByOrder('jersey');
+        $this->page();
+    }
+    
+    //Displays the team roster in groups with pagination - Evanna Wong
+    function page($page_num = 1, $change_order = null) {
+        
+        // Set layout
+        $mode = get_cookie('layout_mode');
+        if ($mode == null) {
+            $mode = "table";
+            $layout_cookie = array(
+                'name' => 'layout_mode',
+                'value' => "$mode",
+                'expire' => '86500',
+                'path' => '/',
+            );
+            set_cookie($layout_cookie);
+        }
+        if ($mode == "table") {
+            $this->data['pagebody'] = 'TeamRosterTable';
+        } else {
+            $this->data['pagebody'] = 'TeamRosterGallery';
+        }
+        
+        // Set ordering
+        if ($change_order == null) {
+            // Case 1: cookie previously set, not changing
+            $order = get_cookie('roster_order');
+            // Case 2: no cookie set, not changing; set to default
+            if ($order == null) {
+                $order = "jersey";
+                $order_cookie = array(
+                    'name' => 'roster_order',
+                    'value' => "$order",
+                    'expire' => '86500',
+                    'path' => '/',
+                );
+                set_cookie($order_cookie);
+            }
+        } else {
+            // Case 3: change cookie to new setting
+            $order = $change_order;
+            $order_cookie = array(
+                'name' => 'roster_order',
+                'value' => "$order",
+                'expire' => '86500',
+                'path' => '/',
+            );
+            set_cookie($order_cookie);
+        }
+        
+        //Pagination settings
+        $config = array();
+        $config["base_url"] = base_url() . "Team/page";
+        $config["total_rows"] = $this->Roster->record_count();
+        $config['per_page'] = 12;
+        $config['use_page_numbers']  = TRUE;
+        $config['page_query_string'] = FALSE;
+        
+        //Bootstrap pagination controls
+        $config['full_tag_open'] = "<ul class='pagination'>";
+        $config['full_tag_close'] ="</ul>";
+        $config['num_tag_open'] = '<li>';
+        $config['num_tag_close'] = '</li>';
+        $config['cur_tag_open'] = "<li class='disabled'><li class='active'><a href='#'>";
+        $config['cur_tag_close'] = "<span class='sr-only'></span></a></li>";
+        $config['next_tag_open'] = "<li>";
+        $config['next_tagl_close'] = "</li>";
+        $config['prev_tag_open'] = "<li>";
+        $config['prev_tagl_close'] = "</li>";
+        $config['first_tag_open'] = "<li>";
+        $config['first_tagl_close'] = "</li>";
+        $config['last_tag_open'] = "<li>";
+        $config['last_tagl_close'] = "</li>";       
+        $config['first_link'] = 'First';
+        $config['last_link'] = 'Last';
+        $config['next_link'] = 'Next';
+        $config['prev_link'] = 'Previous';
+        
+        $this->pagination->initialize($config); 
+        
+        //Fetch data from model
+        $this->data['players'] = $this->Roster->get_data($page_num, $order);
+        
+        //Create page links
+        $this->data["links"] = $this->pagination->create_links();
+        
         $this->render();
     }
-
-    function getPlayer($id){
-        $this->data['pagebody'] = 'Player';    // this is the view we want shown
-        $query = $this->Roster->getArray($id);
-        $this->data['jersey'] = $query['jersey'];
-        $this->data['surname'] = $query['surname'];
-        $this->data['firstname'] = $query['firstname'];
-        $this->data['id'] = $query['id'];
-        $this->data['mug'] = $query['mug'];
-        $this->data['weight'] = $query['weight'];
-        $this->data['position'] = $query['position'];
-        $this->data['college'] = $query['college'];
-        $this->data['age'] = $query['age'];
-        $this->render();
-    }
-
 }
