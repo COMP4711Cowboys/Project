@@ -20,3 +20,24 @@
         <li>First sports team to be valued at $4 billion</li>
     </ul> 
 </p>
+
+<h3>Prediction Engine</h3>
+<div>
+    <div class='col-md-2'><p>Dallas Cowboys</p></div>
+    <div class='col-md-1'><p>vs.</p></div>
+    <form method='post' id='prediction_form'>
+        <div class='col-md-9 form-group'>
+            <p>Opposing Team:
+            {f_opposition}
+            {f_opposition_err}
+            </p>
+        </div>
+        <div class='col-md-2 prediction_submit'>
+            <input type="submit" value="Submit" class="btn btn-primary"/>
+        </div>
+    </form>
+    <div class='prediction_result'>
+        
+    </div>
+</div>
+
