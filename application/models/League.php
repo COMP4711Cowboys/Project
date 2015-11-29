@@ -43,9 +43,15 @@ class League extends MY_Model {
     
     //we need to determine if a given player code is valid (aka. does it exist)
     function validateCode( $code ){
-        $this->db->where('code', $code);
-        $this->db->from($this->_tableName);
-        return $this->db->count_all_results() > 0; 
+        
+        //DB only allows codes of length 3 or less
+        if(strlen($code) > 3){
+            return false;
+        }
+        $this->db->where('code', $code );
+        $result = $this->db->count_all_results($this->_tableName);   
+        
+        return $result > 0; 
     }
     
     function getTeamName( $code ){
