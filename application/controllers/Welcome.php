@@ -28,12 +28,11 @@ class Welcome extends Application {
             $team_list = array_merge($team_list, $entry);
         }
         
-        // Styling
-        $attributes = array('class' => 'form-control');
+        $attributes = array('id' => 'opposition');
         
         $this->data['success_message'] = "";
         
         $this->data['f_opposition_err'] = form_error('opposition');
-        $this->data['f_opposition'] = form_dropdown('opposition', $team_list, $attributes);
+        $this->data['f_opposition'] = form_dropdown('opposition', $team_list, '', $attributes);
     }
 }
