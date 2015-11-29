@@ -40,7 +40,11 @@ class League extends MY_Model {
         }
         return $conference;
     }
-
     
-      
+    // Get opposing team names and codes while ignoring Dallas Cowboys
+    public function getOpposingTeams() {
+        $this->db->select('name, code');
+        $this->db->where('name !=', 'Dallas Cowboys');
+        return $this->db->get($this->_tableName)->result_array();
+    }
 }
