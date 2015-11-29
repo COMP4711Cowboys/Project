@@ -38,7 +38,7 @@ class Prediction extends Application {
             $this->data["their_team"] = $this->League->getTeamName($encodedTeam);
             $this->data["their_code"] = strtolower($encodedTeam);
             
-            $this->data["score"] = strval($prediction[0][0] . ":" . $prediction[1][0]);
+            $this->data["score"] = strval($prediction[0][0] . " : " . $prediction[1][0]);
             
             $this->data["our_game_average"] = $prediction[0][1];
             $this->data["their_game_average"] = $prediction[1][1];

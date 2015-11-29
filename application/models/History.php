@@ -95,11 +95,13 @@ class History extends MY_Model {
             return true;
         }
         
+        /*
+         * test return for testing ajax call
         return array( 
             array(19.8, 20, 24, 10), 
             array(18.5, 15, 35, 20)
             );
-        
+        */
         //get our average score
         $our_average = $this->total_game_average($us);
         $our_10_game_average =  $this->last_game_average($us,10);
@@ -127,11 +129,11 @@ class History extends MY_Model {
     }
     
     private function total_game_average($team){
-        $query = $this->db->select('score', 'home', 'away')
+        $this->db->select('score', 'home', 'away')
                 ->where('home', $team)
                 ->or_where('away',$team);
         
-        $results = $query->results();
+        $results = $this->db->get($this->_tableName)->result();
         $average = $this->calc_average($results, $team);
         
         return $average;
@@ -141,12 +143,14 @@ class History extends MY_Model {
         if (!is_numeric($games) || !is_string($team)){
             return 0;
         }
-        $query = $this->db->select('score', 'home', 'away')
+        $this->db->select('score', 'home', 'away')
                 ->or_where('home', $team)
                 ->or_where('away',$team)
                 ->limit($games);
         
-        $results = $query->results();
+        
+        $results = $this->db->get($this->_tableName)->result();
+        
         $average = $this->calc_average($results, $team);
         
         return $average;
@@ -157,13 +161,14 @@ class History extends MY_Model {
             return 0;
         }
         
-        $query = $this->db->select('score', 'home', 'away')
-                ->where_in('home', array($us,$them))
-                ->where_in('away', array($us,$them))
-                ->limit($games);
+        $this->db->select('score', 'home', 'away')
+            ->where_in('home', array($us,$them))
+            ->where_in('away', array($us,$them))
+            ->limit($games);
         
-        $results = $query->results();
-        $average = $this->calc_average($results, $team);
+        $results = $this->db->get($this->_tableName)->result();
+        
+        $average = $this->calc_average($results, $us);
         
         return $average;
     }
@@ -172,7 +177,7 @@ class History extends MY_Model {
         $total = 0;
         $count = 0;
         
-        foreach( $results as $rows ){
+        foreach( $results as $row ){
             //split the scores home is 0, away is 1
             $scores = explode(":",$row->score);
             
