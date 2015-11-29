@@ -33,11 +33,10 @@
             </p>
         </div>
         <div class='col-md-2 prediction_submit'>
-            <input type="submit" value="Submit" class="btn btn-primary"/>
+            <input type="submit" value="Submit" class="btn btn-primary" id="prediction_submit"/>
         </div>
     </form>
-    <div class='prediction_result'>
+    <div id='prediction_result'>
         
     </div>
 </div>
-
