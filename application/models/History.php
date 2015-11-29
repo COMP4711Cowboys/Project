@@ -40,8 +40,6 @@ class History extends MY_Model2 {
 
         $list = $this->xmlrpc->display_response();
         $this->parse_result($list);
-        print_r($list);
-        die();
     }
 
     //Parses a local XML file and adds records to the database
