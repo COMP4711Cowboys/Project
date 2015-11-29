@@ -167,16 +167,14 @@ jQuery(document).ready(function(){
     //on prediction form submit, get html prediction result and append to div
     $("#prediction_submit").click(function () {
         $.ajax({
-                type: 'ajax',
-                url: '/prediction/predict/',
-                data: { get_param: 'value'},
-                dataType: 'json',
-                onSuccess: function(result){
-                  $("#prediction_result").after(result);
-                }
-            });
+            type: 'ajax',
+            url: '/prediction/predict/' + $("#opposition").val(),
+            success: function(result){
+                console.log($("#opposition").val());
+                $("#prediction_result").html(result);
+            }
         });
-
+    });
 });
 
 
