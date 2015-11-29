@@ -29,31 +29,31 @@ class Prediction extends Application {
                 ->set_status_header(400)  //Status Code: BAD REQUEST
                 ->set_content_type('text/html')
                 ->set_output("");
-        }
-        
-        //get the name of the other team
-        $other_team = $this->League->getTeamName($encodedTeam);
-        
-        //get game records
-        //$winner = $this->History->predictWinner($home, $encodedTeam);
-        $win = true;
-        
-        //do prediction stuff
-        //$this->data["TeamCode"] = $winner;
-
-        //format the answer
-        
-        $this->data["other_team"] = $other_team;
-        
-        if ($win) {
-            $winnerHTML = $this->parser->parse('_predictWin', $this->data, true);
         } else {
-            $winnerHTML = $this->parser->parse('_predictLoss', $this->data, true);
-        }
+            //get the name of the other team
+            $other_team = $this->League->getTeamName($encodedTeam);
 
-        $this->output
-            ->set_status_header(200)  //Status Code: OK
-            ->set_content_type('text/html')
-            ->set_output($winnerHTML);
+            //get game records
+            //$winner = $this->History->predictWinner($home, $encodedTeam);
+            $win = true;
+
+            //do prediction stuff
+            //$this->data["TeamCode"] = $winner;
+
+            //format the answer
+
+            $this->data["other_team"] = $other_team;
+
+            if ($win) {
+                $winnerHTML = $this->parser->parse('_predictWin', $this->data, true);
+            } else {
+                $winnerHTML = $this->parser->parse('_predictLoss', $this->data, true);
+            }
+
+            $this->output
+                ->set_status_header(200)  //Status Code: OK
+                ->set_content_type('text/html')
+                ->set_output($winnerHTML);
+        }
     }
 }
