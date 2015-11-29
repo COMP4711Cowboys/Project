@@ -22,7 +22,7 @@ class Scores extends Application {
 	function index()
 	{
 		$this->load->model('History');
-		$this->History->get_data();
+		$this->History->parse_xml();
 	}
 
 
