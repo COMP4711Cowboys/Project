@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Resultsfor the 2015 NFL season
+-->
+<!DOCTYPE results SYSTEM 'results.dtd'>
+<results>
+    <game number="1" date="20150910" away="PIT" home="NE">21:28</game>
+	<game number="2" date="20150910" away="DAL" home="NE">21:28</game>
+</results>
