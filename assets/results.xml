@@ -4,6 +4,11 @@ Resultsfor the 2015 NFL season
 -->
 <!DOCTYPE results SYSTEM 'results.dtd'>
 <results>
-    <game number="1" date="20150910" away="PIT" home="NE">21:28</game>
-	<game number="2" date="20150911" away="DAL" home="NE">21:28</game>
+    <game number="1" date="20150910" away="PIT" home="NE">23:28</game>
+    <game number="2" date="20150911" away="DAL" home="NE">26:24</game>
+    <game number="3" date="20150912" away="DAL" home="PIT">27:32</game>
+    <game number="4" date="20150913" away="NYJ" home="DAL">34:33</game>
+    <game number="5" date="20150914" away="SEA" home="NE">15:35</game>
+    <game number="6" date="20150915" away="NE" home="DAL">21:20</game>
+    <game number="7" date="20150916" away="DAL" home="SEA">31:14</game>
 </results>

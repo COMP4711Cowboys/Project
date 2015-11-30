@@ -162,7 +162,7 @@ class History extends MY_Model2 {
     }
     
     private function total_game_average($team){
-        $this->db->select('score', 'home', 'away')
+        $this->db->select(array('score', 'home', 'away'))
                 ->where('home', $team)
                 ->or_where('away',$team);
         
@@ -176,9 +176,10 @@ class History extends MY_Model2 {
         if (!is_numeric($games) || !is_string($team)){
             return 0;
         }
-        $this->db->select('score', 'home', 'away')
+        $this->db->select(array('score', 'home', 'away', 'date'))
                 ->or_where('home', $team)
                 ->or_where('away',$team)
+                ->order_by('date', 'DESC')
                 ->limit($games);
         
         
@@ -194,9 +195,10 @@ class History extends MY_Model2 {
             return 0;
         }
         
-        $this->db->select('score', 'home', 'away')
+        $this->db->select( array('score', 'home', 'away', 'date'))
             ->where_in('home', array($us,$them))
             ->where_in('away', array($us,$them))
+            ->order_by('date', 'DESC')
             ->limit($games);
         
         $results = $this->db->get($this->_tableName)->result();
@@ -221,8 +223,14 @@ class History extends MY_Model2 {
             }
             $count = $count + 1;
         }
-        $average = $total / $count;
         
+        //don't want to divid by zero if there were no games!
+        if($count == 0)
+        {
+            return 0;
+        }
+        
+        $average = $total / $count;
         return $average;
     }
     

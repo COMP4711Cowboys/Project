@@ -5,6 +5,9 @@
         <td><img class="league-table-img" src="/img/logos/{their_code}.jpg" title="{their_team}"/></td>
     </tr>
     <tr>
+        <th colspan="2">Predicted Score</th>
+    </tr>
+    <tr>
         <td colspan="2">{score}</td>
     </tr>
     <tr>
@@ -32,6 +35,6 @@
         <th colspan="2">Prediction Formula</th>
     </tr>
     <tr>
-        <td colspan="2"> Predicted Score = Historic Score X 70% + 10-Game Score X 20% + 5-Games against X 10% </td>
+        <td colspan="2"> Predicted Score = (Historic Score X 70%) + (10-Game Score X 20%) + (5-Games against X 10%) </td>
     </tr>
 </table>

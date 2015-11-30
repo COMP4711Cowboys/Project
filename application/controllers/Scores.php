@@ -23,10 +23,10 @@ class Scores extends Application {
 	{
 		$this->load->model('History');
 		//update from server
-		$this->History->update_data_from_remote();
+		//$this->History->update_data_from_remote();
 
 		//update from xml
-		//$this->History->parse_xml();
+		$this->History->parse_xml();
 	}
 
 
