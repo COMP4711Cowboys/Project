@@ -75,17 +75,6 @@ function initializeJS() {
         }
     });
 
-    //bar chart
-    if (jQuery(".custom-custom-bar-chart")) {
-        jQuery(".bar").each(function () {
-            var i = jQuery(this).find(".value").html();
-            jQuery(this).find(".value").html("");
-            jQuery(this).find(".value").animate({
-                height: i
-            }, 2000);
-        });
-    }
-
 }
 
 jQuery(document).ready(function(){
@@ -185,9 +174,21 @@ jQuery(document).ready(function(){
         setTimeout(function(){ location.reload(true);}, 1000);
     });
 
-
-
-
+    //on prediction form submit, get html prediction result and append to div
+    $("#prediction_submit").click(function () {
+        $.ajax({
+            type: 'ajax',
+            url: '/prediction/predict/' + $("#opposition").val(),
+            success: function(result){
+                console.log($("#opposition").val());
+                $("#prediction_result").html(result);
+                
+                //need to resize our scrollbars so we can use the scrollbar
+                $("html").getNiceScroll().resize();
+                $(".scroll-panel").getNiceScroll().resize();
+            }
+        });
+    });
 });
 
 

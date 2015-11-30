@@ -129,7 +129,7 @@ if (!defined('APPPATH'))
       
       <!--main content start-->
       <section id="main-content">
-          <section class="wrapper">            
+          <section class="wrapper scroll-panel">            
               {content}                
           </section>
       </section>
