@@ -128,6 +128,7 @@ class History extends MY_Model2 {
         $our_10_game_average =  $this->last_game_average($us,10);
         $our_5_game_average_against = $this->last_game_average_against($us,$against, 5);
         
+        //our super awesome prediction formula
         $our_score = round(0.7 * $our_average 
                 + 0.2 * $our_10_game_average 
                 + 0.1 * $our_5_game_average_against);
@@ -137,6 +138,7 @@ class History extends MY_Model2 {
         $their_10_game_average = $this->last_game_average($against,10);
         $their_5_game_average_against = $this->last_game_average_against($against,$us, 5);
         
+        //get prediction formula
         $their_score = round( 0.7 * $their_average 
                 + 0.2 * $their_10_game_average 
                 + 0.1 * $their_5_game_average_against );
@@ -149,6 +151,9 @@ class History extends MY_Model2 {
             );
     }
     
+    /**
+     * get the average score for all games for a team
+     */
     private function total_game_average($team){
         $this->db->select(array('score', 'home', 'away'))
                 ->where('home', $team)
@@ -160,6 +165,9 @@ class History extends MY_Model2 {
         return $average;
     }
     
+    /**
+     * get the score average of a team for the past $games amount of games
+     */
     private function last_game_average($team, $games){
         if (!is_numeric($games) || !is_string($team)){
             return 0;
@@ -178,6 +186,10 @@ class History extends MY_Model2 {
         return $average;
     }
     
+    /**
+     * get the average score for $us team against the $them team from their
+     * past $games games against eachother.
+     */
     private function last_game_average_against($us, $them, $games){
         if (!is_numeric($games) || !is_string($us) || !is_string($them)){
             return 0;
@@ -196,6 +208,9 @@ class History extends MY_Model2 {
         return $average;
     }
     
+    /**
+     * calculates the average for the team.
+     */
     private function calc_average($results, $team){
         $total = 0;
         $count = 0;
