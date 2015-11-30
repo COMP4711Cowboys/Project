@@ -3,54 +3,46 @@
 <form method ="post" action="/Standings/data" name="sortLeague">
     Sort By: 
     <select name="sortReq1">
-        <option value="league">League</option>
-        <option value="conference">Conference</option>
-        <option value="division">Division</option>
+        <option value="league" id="league-option">League</option>
+        <option value="conference" id="conference-option">Conference</option>
+        <option value="division" id="division-option">Division</option>
     </select>
     <select name="sortReq2">
-        <option value="city">City</option>
-        <option value="team">Team</option>
-        <option value="standing">Standing</option>
+        <option value="city" id="city-option">City</option>
+        <option value="team" id="team-option">Team</option>
+        <option value="standing" id="standing-option">Standing</option>
     </select>
     
     <input type="submit" value="Go">
 </form><br/>
 
-{league}
 <table class="table table-hover table-striped">
     
-
-    <header class="panel-heading danger"> {conference} </header>
-    
-    {region}
+    <header class="panel-heading danger">NFL - 2015 Regular Season</header>
     <tr>
-        <td class = "success">{division}</td>
+        <td class = "success">NFL Team</td>
         <td class = "success"></td>
         <td class = "success">W</td>
         <td class = "success">L</td>
         <td class = "success">T</td>
+        <td class = "success">Net Points</td>
     <tr/>
-    
-    {teams}
+{league}
     <tr>
         <td><img class="league-table-img" src="/img/logos/{filename}" title="{name}"/></td>
         <td><span title="{code}">{name}</span></td>
         <td>{wins}</td>
         <td>{losses}</td>
         <td>{ties}</td>
+        <td>{netpoints}</td>
     </tr>
-
-    {/teams}
+{/league}
     <tr>
         <td></td>
         <td></td>
         <td></td>
         <td></td>
-        <td></td>       
-    </tr>   
-    {/region}
-    <tr>
-        
-    </tr>
+        <td></td>     
+        <td></td>
+    </tr> 
 </table>
-{/league} 
