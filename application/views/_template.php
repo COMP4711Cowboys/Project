@@ -92,6 +92,14 @@ if (!defined('APPPATH'))
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu extended logout">
+                            <li class="eborder-top">
+                                <span class="setting-title">Prediction:<span>
+                            <li class="eborder-top">
+                                <span class="menuItem">
+                                    <i class=""></i>
+                                    <button id="update_data" class="button btn-primary" >Update Data</button>
+                                </span>
+                            </li>
                             <div class="log-arrow-up"></div>
                             <li class="eborder-top">
                                 <span class="setting-title">Player:<span>

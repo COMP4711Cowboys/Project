@@ -165,6 +165,9 @@ jQuery(document).ready(function(){
                 //need to resize our scrollbars so we can use the scrollbar
                 $("html").getNiceScroll().resize();
                 $(".scroll-panel").getNiceScroll().resize();
+                $("#main-content").resize();
+                $("html").resize();
+                $(".scroll-panel").resize();
             }
         });
     });
