@@ -26,7 +26,12 @@ class Scores extends Application {
 		//$this->History->update_data_from_remote();
 
 		//update from xml
-		$this->History->parse_xml();
+		//$this->History->parse_xml();
+                
+                //sent the OK response with the HTML payload
+                $this->output
+                    ->set_status_header(200)  //Status Code: OK
+                    ->set_content_type('text/html');
 	}
 
 

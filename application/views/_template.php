@@ -96,8 +96,8 @@ if (!defined('APPPATH'))
                                 <span class="setting-title">Prediction:<span>
                             <li class="eborder-top">
                                 <span class="menuItem">
-                                    <i class=""></i>
-                                    <button id="update_data" class="button btn-primary" >Update Data</button>
+                                    <i class="icon_drive"></i>
+                                    <button id="update_prediction_data" class="btn btn-info btn-sm">Update Data</button>
                                 </span>
                             </li>
                             <div class="log-arrow-up"></div>
@@ -145,6 +145,28 @@ if (!defined('APPPATH'))
   </section>
   <!-- container section start -->
 
+  
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Update Data</h4>
+      </div>
+      <div id="update_modal_body" class="modal-body">
+          The Prediction Database has been updated.
+      </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+        </div>
+    </div>
+
+  </div>
+</div>
+  
     <!-- javascripts -->
     <script src="/js/jquery.js"></script>
     <script src="/js/bootstrap.min.js"></script>

@@ -192,6 +192,17 @@ jQuery(document).ready(function(){
             }
         });
     });
+    
+    $("#update_prediction_data").click(function () {
+        $.ajax({
+            type: 'ajax',
+            url: '/scores/',
+            success: function(result){
+                $('#myModal').modal('show'); 
+            }
+        });
+    });
+
 });
 
 
