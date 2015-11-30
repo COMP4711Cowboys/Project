@@ -124,18 +124,18 @@ class History extends MY_Model2 {
         $us = "DAL";
         
         //get our average score
-        $our_average = round($this->total_game_average($us));
-        $our_10_game_average =  round($this->last_game_average($us,10));
-        $our_5_game_average_against = round($this->last_game_average_against($us,$against, 5));
+        $our_average = $this->total_game_average($us);
+        $our_10_game_average =  $this->last_game_average($us,10);
+        $our_5_game_average_against = $this->last_game_average_against($us,$against, 5);
         
         $our_score = round(0.7 * $our_average 
                 + 0.2 * $our_10_game_average 
                 + 0.1 * $our_5_game_average_against);
                 
         //get their average score
-        $their_average =  round( $this->total_game_average($against) );
-        $their_10_game_average = round( $this->last_game_average($against,10) );
-        $their_5_game_average_against = round( $this->last_game_average_against($against,$us, 5) );
+        $their_average =  $this->total_game_average($against);
+        $their_10_game_average = $this->last_game_average($against,10);
+        $their_5_game_average_against = $this->last_game_average_against($against,$us, 5);
         
         $their_score = round( 0.7 * $their_average 
                 + 0.2 * $their_10_game_average 
@@ -144,8 +144,8 @@ class History extends MY_Model2 {
         
         //return our predictions, with only 2 decimal places
         return array( 
-            array($our_score, $our_average, $our_10_game_average, $our_5_game_average_against), 
-            array($their_score, $their_average, $their_10_game_average, $their_5_game_average_against)
+            array($our_score, round($our_average), round($our_10_game_average), round($our_5_game_average_against)), 
+            array($their_score, round($their_average), round($their_10_game_average), round($their_5_game_average_against))
             );
     }
     
