@@ -5052,3 +5052,7 @@ span.customSelect.changed {
 .pagination_links{
     clear: both;
 }
+
+
+.predict_center { vertical-align:middle; text-align:center; }
+.predict_center img { display:block; margin:0 auto; }

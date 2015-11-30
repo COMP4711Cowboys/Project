@@ -123,41 +123,29 @@ class History extends MY_Model2 {
         //our team code
         $us = "DAL";
         
-        //playing against ourself!? we win by default
-        if ( $us == $against ) {
-            return true;
-        }
-        
-        /*
-         * test return for testing ajax call
-        return array( 
-            array(19.8, 20, 24, 10), 
-            array(18.5, 15, 35, 20)
-            );
-        */
         //get our average score
-        $our_average = $this->total_game_average($us);
-        $our_10_game_average =  $this->last_game_average($us,10);
-        $our_5_game_average_against = $this->last_game_average_against($us,$against, 5);
+        $our_average = round($this->total_game_average($us));
+        $our_10_game_average =  round($this->last_game_average($us,10));
+        $our_5_game_average_against = round($this->last_game_average_against($us,$against, 5));
         
-        $our_score = 0.7 * $our_average 
+        $our_score = round(0.7 * $our_average 
                 + 0.2 * $our_10_game_average 
-                + 0.1 * $our_5_game_average_against;
+                + 0.1 * $our_5_game_average_against);
                 
         //get their average score
-        $their_average = $this->total_game_average($against);
-        $their_10_game_average =  $this->last_game_average($against,10);
-        $their_5_game_average_against = $this->last_game_average_against($against,$us, 5);
+        $their_average =  round( $this->total_game_average($against) );
+        $their_10_game_average = round( $this->last_game_average($against,10) );
+        $their_5_game_average_against = round( $this->last_game_average_against($against,$us, 5) );
         
-        $their_score = 0.7 * $their_average 
+        $their_score = round( 0.7 * $their_average 
                 + 0.2 * $their_10_game_average 
-                + 0.1 * $their_5_game_average_against;
+                + 0.1 * $their_5_game_average_against );
 
         
         //return our predictions, with only 2 decimal places
         return array( 
-            array(+number_format($our_score,2), +number_format($our_average,2), +number_format($our_10_game_average,2), +number_format($our_5_game_average_against,2)), 
-            array(+number_format($their_score,2), +number_format($their_average,2), +number_format($their_10_game_average,2), +number_format($their_5_game_average_against,2))
+            array($our_score, $our_average, $our_10_game_average, $our_5_game_average_against), 
+            array($their_score, $their_average, $their_10_game_average, $their_5_game_average_against)
             );
     }
     
