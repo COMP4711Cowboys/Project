@@ -37,46 +37,47 @@ CREATE TABLE IF NOT EXISTS `league` (
   `code` varchar(3) NOT NULL,
   `wins` int(3) NOT NULL,
   `losses` int(3) NOT NULL,
-  `ties` int(3) NOT NULL
+  `ties` int(3) NOT NULL,
+  `netpoints` int(3) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `league`
 --
 
-INSERT INTO `league` (`id`, `name`, `city`, `conference`, `division`, `filename`, `code`, `wins`, `losses`, `ties`) VALUES
-(1, 'New England Patriots', 'New England', 'American Football Conference', 'AFC East', 'ne.jpg', 'NE', 3, 0, 0),
-(2, 'Buffalo Bills', 'Buffalo', 'American Football Conference', 'AFC East', 'buf.jpg', 'BUF', 3, 0, 0),
-(3, 'New York Jets', 'New York', 'American Football Conference', 'AFC East', 'nyj.jpg', 'NYJ', 3, 0, 0),
-(4, 'Miami Dolphins', 'Miami', 'American Football Conference', 'AFC East', 'mia.jpg', 'MIA', 3, 0, 0),
-(5, 'Cincinatti Bengals', 'New Jersey', 'American Football Conference', 'AFC North', 'cin.jpg', 'CIN', 3, 0, 0),
-(6, 'Pittsburgh Steelers', 'Pittsburgh', 'American Football Conference', 'AFC North', 'pit.jpg', 'PIT', 3, 0, 0),
-(7, 'Cleveland Browns', 'Cleveland', 'American Football Conference', 'AFC North', 'cle.jpg', 'CLE', 3, 0, 0),
-(8, 'Baltimore Ravens', 'Baltimore', 'American Football Conference', 'AFC North', 'bal.jpg', 'BAL', 3, 0, 0),
-(9, 'Indianapolis Colts', 'Indianapolis', 'American Football Conference', 'AFC South', 'ind.jpg', 'IND', 3, 0, 0),
-(10, 'Tennesee Titans', 'Tennesee', 'American Football Conference', 'AFC South', 'ten.jpg', 'TEN', 3, 0, 0),
-(11, 'Houston Texans', 'Houston', 'American Football Conference', 'AFC South', 'hou.jpg', 'HOU', 3, 0, 0),
-(12, 'Jackson Jaguars', 'Jackson', 'American Football Conference', 'AFC South', 'jac.jpg', 'JAC', 3, 0, 0),
-(13, 'Denver Broncos', 'Denver', 'American Football Conference', 'AFC West', 'den.jpg', 'DEN', 3, 0, 0),
-(14, 'Oakland Raiders', 'Oakland', 'American Football Conference', 'AFC West', 'oak.jpg', 'OAK', 3, 0, 0),
-(15, 'Kansas City Chiefs', 'Kansas', 'American Football Conference', 'AFC West', 'kc.jpg', 'KC', 3, 0, 0),
-(16, 'San Diego Chargers', 'San Diego', 'American Football Conference', 'AFC West', 'sd.jpg', 'SD', 3, 0, 0),
-(17, 'Dallas Cowboys', 'Dallas', 'National Football Conference', 'NFC East', 'dal.jpg', 'DAL', 3, 0, 0),
-(18, 'New York Giants', 'New York Giants', 'National Football Conference', 'NFC East', 'nyg.jpg', 'NYG', 3, 0, 0),
-(19, 'Washington Redskins', 'Washington', 'National Football Conference', 'NFC East', 'was.jpg', 'WAS', 3, 0, 0),
-(20, 'Philadephia Eagles', 'Philadelphia', 'National Football Conference', 'NFC East', 'phi.jpg', 'PHI', 3, 0, 0),
-(21, 'Green Bay Packers', 'Green Bay', 'National Football Conference', 'NFC North', 'gb.jpg', 'GB', 3, 0, 0),
-(22, 'Minnesota Vikings', 'Minnesota', 'National Football Conference', 'NFC North', 'min.jpg', 'MIN', 3, 0, 0),
-(23, 'Detroit Lions', 'Detroit', 'National Football Conference', 'NFC North', 'det.jpg', 'DET', 3, 0, 0),
-(24, 'Chicago Bears', 'Chicago', 'National Football Conference', 'NFC North', 'chi.jpg', 'CHI', 3, 0, 0),
-(25, 'Carolina Panthers', 'Carolina', 'National Football Conference', 'NFC South', 'car.jpg', 'CAR', 3, 0, 0),
-(26, 'Atlanta Falcons', 'Atlanta', 'National Football Conference', 'NFC South', 'atl.jpg', 'ATL', 3, 0, 0),
-(27, 'Tampa Bay Buccaneers', 'Tampa Bay', 'National Football Conference', 'NFC South', 'tb.jpg', 'TB', 3, 0, 0),
-(28, 'New Orleans Saints', 'New Orleans', 'National Football Conference', 'NFC South', 'no.jpg', 'NO', 3, 0, 0),
-(29, 'Arizona Cardinals', 'Arizona', 'National Football Conference', 'NFC West', 'ari.jpg', 'ARI', 3, 0, 0),
-(30, 'St. Louis Panthers', 'St. Louis', 'National Football Conference', 'NFC West', 'stl.jpg', 'STL', 3, 0, 0),
-(31, 'San Francisco 49ers', 'San Francisco', 'National Football Conference', 'NFC West', 'sf.jpg', 'SF', 3, 0, 0),
-(32, 'Seattle Seahawks', 'Seattle', 'National Football Conference', 'NFC West', 'sea.jpg', 'SEA', 3, 0, 0);
+INSERT INTO `league` (`id`, `name`, `city`, `conference`, `division`, `filename`, `code`, `wins`, `losses`, `ties`, `netpoints`) VALUES
+(1, 'New England Patriots', 'New England', 'American Football Conference', 'AFC East', 'ne.jpg', 'NE', 10, 0, 0, 141),
+(2, 'Buffalo Bills', 'Buffalo', 'American Football Conference', 'AFC East', 'buf.jpg', 'BUF', 5, 5, 0, 9),
+(3, 'New York Jets', 'New York', 'American Football Conference', 'AFC East', 'nyj.jpg', 'NYJ', 5, 5, 0, 44),
+(4, 'Miami Dolphins', 'Miami', 'American Football Conference', 'AFC East', 'mia.jpg', 'MIA', 4, 6, 0, -62),
+(5, 'Cincinatti Bengals', 'New Jersey', 'American Football Conference', 'AFC North', 'cin.jpg', 'CIN', 8, 2, 0, 104),
+(6, 'Pittsburgh Steelers', 'Pittsburgh', 'American Football Conference', 'AFC North', 'pit.jpg', 'PIT', 6, 4, 0, 45),
+(7, 'Cleveland Browns', 'Cleveland', 'American Football Conference', 'AFC North', 'cle.jpg', 'CLE', 2, 8, 0, -91),
+(8, 'Baltimore Ravens', 'Baltimore', 'American Football Conference', 'AFC North', 'bal.jpg', 'BAL', 3, 7, 0, -23),
+(9, 'Indianapolis Colts', 'Indianapolis', 'American Football Conference', 'AFC South', 'ind.jpg', 'IND', 5, 5, 0, -11),
+(10, 'Tennesee Titans', 'Tennesee', 'American Football Conference', 'AFC South', 'ten.jpg', 'TEN', 2, 8, 0, -54),
+(11, 'Houston Texans', 'Houston', 'American Football Conference', 'AFC South', 'hou.jpg', 'HOU', 5, 5, 0, -2),
+(12, 'Jackson Jaguars', 'Jackson', 'American Football Conference', 'AFC South', 'jac.jpg', 'JAC', 4, 6, 0, -63),
+(13, 'Denver Broncos', 'Denver', 'American Football Conference', 'AFC West', 'den.jpg', 'DEN', 8, 2, 0, 39),
+(14, 'Oakland Raiders', 'Oakland', 'American Football Conference', 'AFC West', 'oak.jpg', 'OAK', 4, 6, 0, -16),
+(15, 'Kansas City Chiefs', 'Kansas', 'American Football Conference', 'AFC West', 'kc.jpg', 'KC', 5, 5, 0, 67),
+(16, 'San Diego Chargers', 'San Diego', 'American Football Conference', 'AFC West', 'sd.jpg', 'SD', 2, 8, 0, -63),
+(17, 'Dallas Cowboys', 'Dallas', 'National Football Conference', 'NFC East', 'dal.jpg', 'DAL', 3, 8, 0, -57),
+(18, 'New York Giants', 'New York Giants', 'National Football Conference', 'NFC East', 'nyg.jpg', 'NYG', 5, 5, 0, 14),
+(19, 'Washington Redskins', 'Washington', 'National Football Conference', 'NFC East', 'was.jpg', 'WAS', 4, 6, 0, -26),
+(20, 'Philadephia Eagles', 'Philadelphia', 'National Football Conference', 'NFC East', 'phi.jpg', 'PHI', 4, 7, 0, -31),
+(21, 'Green Bay Packers', 'Green Bay', 'National Football Conference', 'NFC North', 'gb.jpg', 'GB', 7, 4, 0, 47),
+(22, 'Minnesota Vikings', 'Minnesota', 'National Football Conference', 'NFC North', 'min.jpg', 'MIN', 7, 3, 0, 37),
+(23, 'Detroit Lions', 'Detroit', 'National Football Conference', 'NFC North', 'det.jpg', 'DET', 4, 7, 0, -58),
+(24, 'Chicago Bears', 'Chicago', 'National Football Conference', 'NFC North', 'chi.jpg', 'CHI', 5, 6, 0, -33),
+(25, 'Carolina Panthers', 'Carolina', 'National Football Conference', 'NFC South', 'car.jpg', 'CAR', 11, 0, 0, 127),
+(26, 'Atlanta Falcons', 'Atlanta', 'National Football Conference', 'NFC South', 'atl.jpg', 'ATL', 6, 4, 0, 26),
+(27, 'Tampa Bay Buccaneers', 'Tampa Bay', 'National Football Conference', 'NFC South', 'tb.jpg', 'TB', 5, 5, 0, -31),
+(28, 'New Orleans Saints', 'New Orleans', 'National Football Conference', 'NFC South', 'no.jpg', 'NO', 4, 6, 0, -78),
+(29, 'Arizona Cardinals', 'Arizona', 'National Football Conference', 'NFC West', 'ari.jpg', 'ARI', 8, 2, 0, 120),
+(30, 'St. Louis Panthers', 'St. Louis', 'National Football Conference', 'NFC West', 'stl.jpg', 'STL', 4, 6, 0, -44),
+(31, 'San Francisco 49ers', 'San Francisco', 'National Football Conference', 'NFC West', 'sf.jpg', 'SF', 3, 7, 0, -113),
+(32, 'Seattle Seahawks', 'Seattle', 'National Football Conference', 'NFC West', 'sea.jpg', 'SEA', 5, 5, 0, 36);
 
 -- --------------------------------------------------------
 

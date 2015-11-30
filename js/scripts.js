@@ -91,6 +91,29 @@ function initializeJS() {
 jQuery(document).ready(function(){
     initializeJS();
     
+    //Check which league order option was selected
+    //Set select option value for league order
+    var league_order = $.cookie("league_order");
+    
+    if(league_order == "league"){
+        $('#league-option').attr("selected",true);
+    } else if(league_order == "conference"){
+        $('#conference-option').attr("selected",true);
+    } else if(league_order == "division"){
+        $('#division-option').attr("selected",true);
+    }
+    
+    //Set select option value for league order
+    var league_sub_order = $.cookie("league_sub_order");
+    
+    if(league_sub_order == "city"){
+        $('#city-option').attr("selected",true);
+    } else if(league_sub_order == "team"){
+        $('#team-option').attr("selected",true);
+    } else if(league_sub_order == "standing"){
+        $('#standing-option').attr("selected",true);
+    }
+    
     //Check how the roster is being ordered by
     //denote to user how it is being ordered.
     var order = $.cookie("roster_order");
@@ -102,7 +125,6 @@ jQuery(document).ready(function(){
     } else {
         $("#lastname-btn").addClass("active");
     }
-
     
     //Bootstrap switch functions, this makes my layout and edit mode 
     //selection look so snazzy
@@ -138,7 +160,6 @@ jQuery(document).ready(function(){
         $.cookie("layout_mode", "gallery", { path : '/' });
     }
     
-
 
     //the following methods are called when the swich is changed
     //going to use this to send a message to update the tables

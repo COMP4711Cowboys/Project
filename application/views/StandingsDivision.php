@@ -3,14 +3,14 @@
 <form method ="post" action="/Standings/data" name="sortLeague">
     Sort By: 
     <select name="sortReq1">
-        <option value="league">League</option>
-        <option value="conference">Conference</option>
-        <option value="division">Division</option>
+        <option value="league" id="league-option">League</option>
+        <option value="conference" id="conference-option">Conference</option>
+        <option value="division" id="division-option">Division</option>
     </select>
     <select name="sortReq2">
-        <option value="city">City</option>
-        <option value="team">Team</option>
-        <option value="standing">Standing</option>
+        <option value="city" id="city-option">City</option>
+        <option value="team" id="team-option">Team</option>
+        <option value="standing" id="standing-option">Standing</option>
     </select>
     
     <input type="submit" value="Go">
@@ -29,6 +29,7 @@
         <td class = "success">W</td>
         <td class = "success">L</td>
         <td class = "success">T</td>
+        <td class = "success">Net Points</td>
     <tr/>
     
     {teams}
@@ -38,6 +39,7 @@
         <td>{wins}</td>
         <td>{losses}</td>
         <td>{ties}</td>
+        <td>{netpoints}</td>
     </tr>
 
     {/teams}
@@ -46,7 +48,8 @@
         <td></td>
         <td></td>
         <td></td>
-        <td></td>       
+        <td></td>  
+        <td></td>
     </tr>   
     {/region}
     <tr>
