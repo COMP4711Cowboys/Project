@@ -61,4 +61,4 @@ $route['Team/page'] = 'TeamRoster/page';
 $route['Team/page/(:num)'] = 'TeamRoster/page/$1';
 $route['Player'] = 'Player';
 $route['Team/page/1/(:any)'] = 'TeamRoster/page/1/$1';
-
+$route['Standings/data'] = 'LeagueStandings/data';
