@@ -20,7 +20,7 @@ class History extends MY_Model2 {
     }
 
     //Recieves the XML from the remote server and adds records to the database.
-    public function get_data_from_remote(){
+    public function update_data_from_remote(){
         
         $this->xmlrpc->server(RPCSERVER, RPCPORT);
         $this->xmlrpc->method('since');
@@ -237,4 +237,8 @@ class History extends MY_Model2 {
         return $average;
     }
     
+    
+    public function clear(){
+        $this->db->empty_table('history') ;
+    }
 }

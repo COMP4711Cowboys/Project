@@ -198,10 +198,21 @@ jQuery(document).ready(function(){
             type: 'ajax',
             url: '/scores/',
             success: function(result){
-                $('#myModal').modal('show'); 
+                $('#updateModal').modal('show'); 
             }
         });
     });
+    
+    $("#clear_prediction_data").click(function () {
+        $.ajax({
+            type: 'ajax',
+            url: '/scores/clear_prediction_data',
+            success: function(result){
+                $('#resetModal').modal('show'); 
+            }
+        });
+    });
+    
 
 });
 
