@@ -75,21 +75,33 @@ function initializeJS() {
         }
     });
 
-    //bar chart
-    if (jQuery(".custom-custom-bar-chart")) {
-        jQuery(".bar").each(function () {
-            var i = jQuery(this).find(".value").html();
-            jQuery(this).find(".value").html("");
-            jQuery(this).find(".value").animate({
-                height: i
-            }, 2000);
-        });
-    }
-
 }
 
 jQuery(document).ready(function(){
     initializeJS();
+    
+    //Check which league order option was selected
+    //Set select option value for league order
+    var league_order = $.cookie("league_order");
+    
+    if(league_order == "league"){
+        $('#league-option').attr("selected",true);
+    } else if(league_order == "conference"){
+        $('#conference-option').attr("selected",true);
+    } else if(league_order == "division"){
+        $('#division-option').attr("selected",true);
+    }
+    
+    //Set select option value for league order
+    var league_sub_order = $.cookie("league_sub_order");
+    
+    if(league_sub_order == "city"){
+        $('#city-option').attr("selected",true);
+    } else if(league_sub_order == "team"){
+        $('#team-option').attr("selected",true);
+    } else if(league_sub_order == "standing"){
+        $('#standing-option').attr("selected",true);
+    }
     
     //Check how the roster is being ordered by
     //denote to user how it is being ordered.
@@ -102,7 +114,6 @@ jQuery(document).ready(function(){
     } else {
         $("#lastname-btn").addClass("active");
     }
-
     
     //Bootstrap switch functions, this makes my layout and edit mode 
     //selection look so snazzy
@@ -139,7 +150,6 @@ jQuery(document).ready(function(){
     }
     
 
-
     //the following methods are called when the swich is changed
     //going to use this to send a message to update the tables
     $('input[name="edit_switch"]').on('switchChange.bootstrapSwitch', function(event, state) {
@@ -164,8 +174,45 @@ jQuery(document).ready(function(){
         setTimeout(function(){ location.reload(true);}, 1000);
     });
 
-
-
+    //on prediction form submit, get html prediction result and append to div
+    $("#prediction_submit").click(function () {
+        $.ajax({
+            type: 'ajax',
+            url: '/prediction/predict/' + $("#opposition").val(),
+            success: function(result){
+                console.log($("#opposition").val());
+                $("#prediction_result").html(result);
+                
+                //need to resize our scrollbars so we can use the scrollbar
+                $("html").getNiceScroll().resize();
+                $(".scroll-panel").getNiceScroll().resize();
+                $("#main-content").resize();
+                $("html").resize();
+                $(".scroll-panel").resize();
+            }
+        });
+    });
+    
+    $("#update_prediction_data").click(function () {
+        $.ajax({
+            type: 'ajax',
+            url: '/scores/',
+            success: function(result){
+                $('#updateModal').modal('show'); 
+            }
+        });
+    });
+    
+    $("#clear_prediction_data").click(function () {
+        $.ajax({
+            type: 'ajax',
+            url: '/scores/clear_prediction_data',
+            success: function(result){
+                $('#resetModal').modal('show'); 
+            }
+        });
+    });
+    
 
 });
 

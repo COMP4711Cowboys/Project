@@ -92,6 +92,20 @@ if (!defined('APPPATH'))
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu extended logout">
+                            <li class="eborder-top">
+                                <span class="setting-title">Prediction:<span>
+                            <li class="eborder-top">
+                                <span class="menuItem">
+                                    <i class="icon_download"></i>
+                                    <button id="update_prediction_data" class="btn btn-info btn-sm">Update Data</button>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="menuItem">
+                                    <i class="icon_trash"></i>
+                                    <button id="clear_prediction_data" class="btn btn-info btn-sm">Clear Data</button>
+                                </span>
+                            </li>
                             <div class="log-arrow-up"></div>
                             <li class="eborder-top">
                                 <span class="setting-title">Player:<span>
@@ -129,13 +143,56 @@ if (!defined('APPPATH'))
       
       <!--main content start-->
       <section id="main-content">
-          <section class="wrapper">            
+          <section class="wrapper scroll-panel">            
               {content}                
           </section>
       </section>
       <!--main content end-->
   </section>
   <!-- container section start -->
+
+  
+    <!-- Modal -->
+    <div id="updateModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Update Prediction Data</h4>
+          </div>
+          <div id="update_modal_body" class="modal-body">
+              The Prediction Database has been updated.
+          </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+
+      </div>
+    </div>
+    
+    <div id="resetModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Cleared Prediction Data</h4>
+          </div>
+          <div id="update_modal_body" class="modal-body">
+              The Prediction Database has been cleared, please update the database.
+          </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+
+      </div>
+    </div>
+
 
     <!-- javascripts -->
     <script src="/js/jquery.js"></script>
