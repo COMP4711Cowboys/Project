@@ -7,6 +7,15 @@ Student project where we create an NFL Team website. This project is for educati
 * Derek Gleeson
 * Devan Yim
 
+Instructions: Database has a few items, so in order to clear data. From the homepage. Please press settings, and select clear data. Then select update data.
+
+#Work Distribution & Credit for Assignment 3
+* League Standings and Presentation - Evanna Wong
+* History Model - Devan and Jay
+* XMLRPC - Jay
+* Prediction Controller - Devan
+* Prediction UI - Derek
+
 # Work Distribution & Credit for Assignment 2
 
 * TeamRoster Controller - Jathavan, Derek & Evanna

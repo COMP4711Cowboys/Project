@@ -101,7 +101,7 @@ class History extends MY_Model2 {
         $record->date = $element['date'];
         $record->away = $element['away'];
         $record->home = $element['home'];
-        $record->score = "21:21";
+        $record->score = $element['score'];
         $record->inserted = Date("Y-m-d H:i:s");
         return $record; 
     }
